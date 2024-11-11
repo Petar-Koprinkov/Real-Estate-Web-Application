@@ -1,5 +1,6 @@
 from django.core.validators import MinValueValidator
 from django.db import models
+from real_estate_web_application.real_estate.choices import TypeChoice
 
 
 class Properties(models.Model):
@@ -11,12 +12,11 @@ class Properties(models.Model):
 
     type = models.CharField(
         max_length=100,
-        choices=[]
+        choices=TypeChoice.choices,
+
     )
 
-    property_image = models.ImageField(
-        upload_to='property_image/',
-    )
+    property_image = models.URLField()
 
     rooms = models.IntegerField()
 

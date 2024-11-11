@@ -13,7 +13,7 @@
 <header>
     <div class="container">
         <div class="logo">
-            <a href="{% url 'home' %}">RealEstateApp</a>
+            <a href="{% url 'home' %}">Real Estate App</a>
         </div>
         <nav>
             <ul>
@@ -39,12 +39,21 @@
             <h2>Latest Properties</h2>
             <div class="listing-grid">
                 <!-- Example listing item, repeat for more listings -->
-                <div class="listing-item">
-                    <img src="#" alt="Property 1">
-                    <h3>Luxury Apartment</h3>
-                    <p>$800,000 - 3 Beds, 2 Baths</p>
-                    <a href="#" class="btn">View Details</a>
-                </div>
+                <ul class="listing-properties">
+                    {% for property in properties %}
+                        <li>
+                            <div class="listing-item">
+                                <img src="#" alt="Property 1">
+                                <h3>{{ properties.name }}</h3>
+                                <p>${{ properties.value }} - {{ properties.rooms }} Rooms, {{ properties.floor }} Floor</p>
+                                <a href="#" class="btn">View Details</a>
+                            </div>
+                        </li>
+                    {% empty %}
+                        <h3> There are not any offers</h3>
+                    {% endfor %}
+                </ul>
+
                 <!-- Repeat as necessary -->
             </div>
         </div>
