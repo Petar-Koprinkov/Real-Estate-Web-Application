@@ -28,6 +28,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         ,
     )
 
+    user_type = models.CharField(
+        max_length=30,
+        choices=UserTypeChoice.choices,
+        default=UserTypeChoice.BUYER
+    )
+
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = []
 
@@ -35,7 +41,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
 class Profile(models.Model):
-
     user = models.OneToOneField(
         to=CustomUser,
         on_delete=models.CASCADE,
@@ -56,14 +61,8 @@ class Profile(models.Model):
 
     email = models.EmailField()
 
-    user_type = models.CharField(
-        max_length=30,
-        choices=UserTypeChoice.choices,
-    )
-
     profile_picture = models.ImageField(
         upload_to="profile_pictures/",
         blank=True,
         null=True,
     )
-

@@ -28,26 +28,31 @@ form {
     flex-direction: column;
 }
 
-form input[type="text"],
-form input[type="password"] {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #dddddd;
-    border-radius: 4px;
-    font-size: 16px;
-    width: 100%;
-    box-sizing: border-box;
+.register-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-form input[type="text"]:focus,
-form input[type="password"]:focus {
-    border-color: #007bff;
+.register-container form input,
+.register-container form select {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fafafa;
+    transition: border-color 0.3s ease;
+}
+
+.register-container form input:focus,
+.register-container form select:focus {
+    border-color: #4CAF50;
+    background-color: #fff;
     outline: none;
-    box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
 }
 
 form .btn {
-    background: #007bff;
+    background: #4CAF50;
     color: #ffffff;
     padding: 10px;
     font-size: 16px;
