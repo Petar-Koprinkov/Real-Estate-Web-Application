@@ -1,31 +1,7 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real Estate Application</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-<!-- Header Section -->
-<header>
-    <div class="container">
-        <div class="logo">
-            <a href="{% url 'home' %}">Real Estate App</a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Properties</a></li>
-                <li><a href="#">Create Listings</a></li>
-                <li><a href="#">Profile</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-<main>
+{% block content %}
     <section class="inscription">
         <div class="container">
             <h1>Find Your Dream Home</h1>
@@ -33,19 +9,17 @@
             <a href="#" class="btn">Browse Listings</a>
         </div>
     </section>
-
     <section class="featured-listings">
         <div class="container">
             <h2>Latest Properties</h2>
             <div class="listing-grid">
-                <!-- Example listing item, repeat for more listings -->
                 <ul class="listing-properties">
                     {% for property in properties %}
                         <li>
                             <div class="listing-item">
-                                <img src="#" alt="Property 1">
-                                <h3>{{ properties.name }}</h3>
-                                <p>${{ properties.value }} - {{ properties.rooms }} Rooms, {{ properties.floor }} Floor</p>
+                                <img src="{{ property.property_image }}" alt="Property 1">
+                                <h3>{{ property.name }}</h3>
+                                <p>${{ property.value }} - {{ property.rooms }} Rooms, {{ property.floor }} Floor</p>
                                 <a href="#" class="btn">View Details</a>
                             </div>
                         </li>
@@ -53,24 +27,7 @@
                         <h3> There are not any offers</h3>
                     {% endfor %}
                 </ul>
-
-                <!-- Repeat as necessary -->
             </div>
         </div>
     </section>
-</main>
-
-<!-- Footer Section -->
-<footer>
-    <div class="container">
-        <p>&copy; 2024 RealEstateApp. All rights reserved.</p>
-        <div class="social-links">
-            <a href="#">Facebook</a> |
-            <a href="#">Instagram</a> |
-            <a href="#">Twitter</a>
-        </div>
-    </div>
-</footer>
-
-</body>
-</html>
+{% endblock %}

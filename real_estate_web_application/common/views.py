@@ -9,7 +9,7 @@ class HomePageView(ListView):
     context_object_name = 'properties'
 
     def get_queryset(self):
-        return Properties.objects.filter('-value')
+        return Properties.objects.order_by('-value')
 
 
 

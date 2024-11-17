@@ -9,6 +9,9 @@ body {
     line-height: 1.6;
     background-color: #f8f9fa;
     color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .container {
@@ -28,7 +31,6 @@ header {
     top: 0;
     z-index: 10;
 }
-
 
 header .container {
     display: flex;
@@ -63,6 +65,7 @@ header nav ul li a:hover {
 }
 
 main {
+    flex: 1;
     background: url('/static/images/home_background.jpg') no-repeat center center/cover;
 }
 
@@ -102,7 +105,6 @@ main {
     background-color: #0056b3;
 }
 
-/* Featured Listings Section */
 .featured-listings {
     padding: 3rem 0;
     text-align: center;
@@ -134,10 +136,9 @@ ul.listing-properties {
     margin: 0;
     padding: 0;
     width: 100%;
-    max-width: 300px; /* Limit the width of each card */
+    max-width: 300px;
 }
 
-/* Listing Item Container */
 .listing-item {
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -156,7 +157,6 @@ ul.listing-properties {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Image Styling */
 .listing-item img {
     width: 100%;
     height: auto;
@@ -164,7 +164,6 @@ ul.listing-properties {
     border-bottom: 1px solid #ddd;
 }
 
-/* Text and Details */
 .listing-item h3 {
     font-size: 1.2rem;
     color: #2c3e50;
@@ -177,7 +176,6 @@ ul.listing-properties {
     margin: 0 15px 15px;
 }
 
-/* Button Styling */
 .listing-item .btn {
     background-color: #3498db;
     color: #fff;
@@ -194,7 +192,6 @@ ul.listing-properties {
 .listing-item .btn:hover {
     background-color: #2980b9;
 }
-
 
 footer {
     background-color: #222;
@@ -218,20 +215,19 @@ footer .social-links a:hover {
     color: #007bff;
 }
 
-
 @media (max-width: 768px) {
     ul.listing-properties {
         gap: 15px;
     }
 
     .listing-properties li {
-        max-width: 45%; /* Adjust to two columns on tablet */
+        max-width: 45%;
     }
 }
 
 @media (max-width: 480px) {
     .listing-properties li {
-        max-width: 100%; /* Full width on small screens */
+        max-width: 100%;
     }
 
     .listing-item h3 {
@@ -251,29 +247,6 @@ footer .social-links a:hover {
     header nav ul {
         flex-direction: column;
         gap: 1rem;
-    }
-}
-
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-    }
-
-    header nav ul {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .listing-item {
-        width: 100%;
-    }
-
-    .inscription h1 {
-        font-size: 1.8rem;
-    }
-
-    .inscription p {
-        font-size: 0.9rem;
     }
 }
 
