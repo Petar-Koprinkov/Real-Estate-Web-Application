@@ -3,7 +3,9 @@
     <div class="login-container">
         <h2>Login</h2>
         <form method="post">
+            {{ form.username.errors }}
             {{ form.username }}
+            {{ form.password.errors }}
             {{ form.password }}
             {% csrf_token %}
             <button type="submit">Login</button>

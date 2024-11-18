@@ -45,24 +45,57 @@ header .logo a {
     text-decoration: none;
 }
 
-header nav ul {
+nav ul {
     list-style: none;
-    display: flex;
-    gap: 1.5rem;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-header nav ul li a {
-    color: #fff;
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
     text-decoration: none;
-    font-size: 1rem;
-    transition: color 0.3s;
+    color: #ecf0f1;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-header nav ul li a:hover {
-    color: #007bff;
+nav ul li a:hover {
+    background-color: #3498db;
+    color: #fff;
 }
+
+form.logout {
+    display: inline;
+    margin-left: 25px;
+}
+
+form.logout button {
+    background-color: #e74c3c;
+    color: white;
+    font-size: 14px;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form.logout button:hover {
+    background-color: #c0392b;
+}
+
+form.logout button i {
+    font-style: normal;
+}
+
 
 main {
     flex: 1;
