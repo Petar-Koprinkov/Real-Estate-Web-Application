@@ -20,10 +20,13 @@
                     <li><a href="#">Properties</a></li>
                     <li><a href="#">Create Listings</a></li>
                     <li><a href="#">Profile</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button class="button" type="submit"><i>Logout</i></button>
+                    </form>
                 {% else %}
                     <li><a href="{% url 'register' %}">Register</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
                 {% endif %}
             </ul>
         </nav>
