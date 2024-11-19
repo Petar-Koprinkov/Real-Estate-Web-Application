@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="profile-detail-wrapper">
+        <div class="profile-detail-container">
+            <img
+                    src=""
+                    alt="Profile Picture"
+                    class="profile-detail-picture"
+            />
+            <div class="profile-detail-detail">
+                <span>First Name:</span> {{ profile.first_name }}
+            </div>
+            <div class="profile-detail">
+                <span>Last Name:</span> {{ profile.last_name }}
+            </div>
+            <div class="profile-detail-detail">
+                <span>Email:</span> {{ profile.email }}
+            </div>
+            <button class="edit-button">Edit Profile</button>
+            <button class="edit-button">Delete Profile</button>
+        </div>
+    </div>
+{% endblock %}
