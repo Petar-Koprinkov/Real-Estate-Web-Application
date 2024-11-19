@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
+{% load placeholder %}
 {% block content %}
-    <div class="login-container">
-        <h2>Login</h2>
-        <form method="post">
-            {{ form.username.errors }}
-            {{ form.username }}
-            {{ form.password.errors }}
-            {{ form.password }}
-            {% csrf_token %}
-            <button type="submit">Login</button>
-        </form>
+    <div class="form-wrapper">
+        <div class="register-container">
+            <h2>Login</h2>
+            <form method="post">
+                {{ form.username.errors }}
+                {{ form.username|placeholder:'Username' }}
+                {{ form.password.errors }}
+                {{ form.password|placeholder:'Password'  }}
+                {% csrf_token %}
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </div>
     </div>
 {% endblock %}
