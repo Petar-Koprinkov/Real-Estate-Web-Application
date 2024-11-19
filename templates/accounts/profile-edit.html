@@ -5,15 +5,17 @@
 <div class="form-wrapper">
     <div class="register-container">
         <h2>Register</h2>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {{ form.first_name.errors }}
             {{ form.first_name|placeholder:'First Name' }}
             {{ form.last_name.errors }}
             {{ form.last_name| placeholder:'Last Name' }}
             {{ form.email.errors }}
             {{ form.email|placeholder:'Email' }}
+            {% if not profile.profile_picture %}
             {{ form.profile_picture.errors }}
-            {{ form.profile_picture}}
+            {{ form.profile_picture }}
+            {% endif %}
             {{ form.user_type }}
             {% csrf_token %}
             <button type="submit" class="btn">Edit</button>

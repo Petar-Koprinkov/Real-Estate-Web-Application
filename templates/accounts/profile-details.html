@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <div class="detail-wrapper">
         <div class="profile-detail-container">
-            <img
-                    src=""
-                    alt="Profile Picture"
-                    class="profile-detail-picture"
-            />
-              <div class="profile-detail-detail">
+            {% if  profile.profile_picture %}
+                <img
+                        src="{{ profile.profile_picture.url }}"
+                        alt="Profile Picture"
+                        class="profile-detail-picture"
+                />
+            {% else %}
+                <img
+                        src="{% static 'images/anonymous_user.jpg' %}"
+                        alt="Profile Picture"
+                        class="profile-detail-picture"
+                />
+            {% endif %}
+            <div class="profile-detail-detail">
                 <span>Username:</span> {{ profile.user.username }}
             </div>
             <div class="profile-detail-detail">
@@ -19,8 +28,15 @@
             <div class="profile-detail-detail">
                 <span>Email:</span> {{ profile.email }}
             </div>
-            <a href="{% url 'profile-edit' profile.pk %}"><button class="edit-button">Edit</button></a>
-            <a href="#"><button class="delete-button">Delete</button></a>
+            <div class="profile-detail-detail">
+                <span>User Type:</span> {{ profile.user.user_type }}
+            </div>
+            <a href="{% url 'profile-edit' profile.pk %}">
+                <button class="edit-button">Edit</button>
+            </a>
+            <a href="#">
+                <button class="delete-button">Delete</button>
+            </a>
         </div>
     </div>
 {% endblock %}
