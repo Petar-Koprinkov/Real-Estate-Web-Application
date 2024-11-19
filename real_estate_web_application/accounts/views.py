@@ -1,8 +1,8 @@
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView
-from real_estate_web_application.accounts.forms import CustomUserCreationForm
+from django.views.generic import CreateView, DetailView, UpdateView
+from real_estate_web_application.accounts.forms import CustomUserCreationForm, EditProfileForm
 from real_estate_web_application.accounts.models import Profile
 
 UserModel = get_user_model()
@@ -30,5 +30,16 @@ class ProfileDetailView(DetailView):
     template_name = 'accounts/profile-details.html'
 
 
+class ProfileEditView(UpdateView):
+    model = Profile
+    form_class = EditProfileForm
+    context_object_name = 'profile'
+    template_name = 'accounts/profile-edit.html'
 
-
+    def get_success_url(self):
+        return reverse_lazy(
+            'profile-detail',
+            kwargs={
+                'pk': self.object.pk
+            }
+        )

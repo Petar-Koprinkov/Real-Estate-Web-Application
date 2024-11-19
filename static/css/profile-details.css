@@ -49,22 +49,49 @@
 }
 
 .edit-button {
-    display: inline-block;
+     display: inline-block;
     background: #4CAF50;
     color: #fff;
     border: none;
-    padding: 0.8rem 2rem;
+    padding: 15px 40px;
     border-radius: 25px;
-    font-size: 1rem;
+    font-size: 16px;
+    line-height: 1;
     cursor: pointer;
     text-transform: uppercase;
     margin-top: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    width: 180px;
+    text-align: center;
 }
 
 .edit-button:hover {
     background: #388E3C;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.delete-button {
+    display: inline-block;
+    background: #FF0000;
+    color: #fff;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 25px;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    width: 180px;
+    text-align: center;
+}
+
+.delete-button:hover {
+    background: red;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
 }

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load placeholder %}
+
+{% block content %}
+<div class="form-wrapper">
+    <div class="register-container">
+        <h2>Register</h2>
+        <form method="post">
+            {{ form.first_name.errors }}
+            {{ form.first_name|placeholder:'First Name' }}
+            {{ form.last_name.errors }}
+            {{ form.last_name| placeholder:'Last Name' }}
+            {{ form.email.errors }}
+            {{ form.email|placeholder:'Email' }}
+            {{ form.profile_picture.errors }}
+            {{ form.profile_picture}}
+            {{ form.user_type }}
+            {% csrf_token %}
+            <button type="submit" class="btn">Edit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
