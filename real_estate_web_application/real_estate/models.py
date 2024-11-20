@@ -1,5 +1,7 @@
 from django.core.validators import MinValueValidator
 from django.db import models
+
+from real_estate_web_application.accounts.models import Profile
 from real_estate_web_application.real_estate.choices import TypeChoice
 
 
@@ -17,8 +19,6 @@ class Properties(models.Model):
     )
 
     property_image = models.URLField()
-
-    rooms = models.IntegerField()
 
     floors = models.IntegerField()
 
@@ -42,3 +42,10 @@ class Properties(models.Model):
     )
 
     content = models.TextField()
+
+    owner = models.ForeignKey(
+        to=Profile,
+        on_delete=models.CASCADE,
+        related_name='property',
+    )
+
