@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.views import LoginView
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from real_estate_web_application.accounts.forms import CustomUserCreationForm, EditProfileForm
 from real_estate_web_application.accounts.models import Profile
 
@@ -43,3 +44,17 @@ class ProfileEditView(UpdateView):
                 'pk': self.object.pk
             }
         )
+
+
+class ProfileDeleteView(DeleteView):
+    model = Profile
+    success_url = reverse_lazy('home')
+    template_name = 'accounts/delete-page.html'
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def delete(self, request, *args, **kwargs):
+        user = self.get_object()
+        user.delete()
+        return redirect(self.get_success_url())

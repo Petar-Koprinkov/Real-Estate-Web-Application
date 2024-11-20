@@ -74,13 +74,12 @@ nav ul li a:hover {
 
 form.logout {
     display: inline;
-    margin-left: 25px;
 }
 
 form.logout button {
-    background-color: #e74c3c;
+    background-color: #222;
     color: white;
-    font-size: 14px;
+    font-size: 16px;
     border: none;
     padding: 8px 12px;
     border-radius: 5px;
