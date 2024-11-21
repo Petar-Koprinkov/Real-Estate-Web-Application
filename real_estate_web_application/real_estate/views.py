@@ -16,5 +16,5 @@ class PropertyListView(ListView):
     model = Properties
     context_object_name = 'properties'
     template_name = 'real-estate/properties.html'
-    paginate_by = 2
+    paginate_by = 3
 
