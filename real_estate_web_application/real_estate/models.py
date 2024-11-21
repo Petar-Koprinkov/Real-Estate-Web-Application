@@ -1,12 +1,10 @@
 from django.core.validators import MinValueValidator
 from django.db import models
-
 from real_estate_web_application.accounts.models import Profile
 from real_estate_web_application.real_estate.choices import TypeChoice
 
 
 class Properties(models.Model):
-
     name = models.CharField(
         max_length=100,
         unique=True,
@@ -32,13 +30,10 @@ class Properties(models.Model):
         validators=[MinValueValidator(0.0, message='Value must be greater than zero')],
     )
 
-    address = models.CharField(
-        max_length=100,
-        unique=True,
-    )
-
-    city = models.CharField(
-        max_length=100,
+    location = models.ForeignKey(
+        to='Location',
+        on_delete=models.CASCADE,
+        related_name='properties',
     )
 
     content = models.TextField()
@@ -48,4 +43,29 @@ class Properties(models.Model):
         on_delete=models.CASCADE,
         related_name='property',
     )
+
+
+class Location(models.Model):
+    city = models.CharField(
+        max_length=100,
+    )
+
+    state = models.CharField(
+        max_length=100,
+    )
+
+    def __str__(self):
+        return f'{self.city}, {self.state}'
+
+
+
+
+
+
+
+
+
+
+
+
 

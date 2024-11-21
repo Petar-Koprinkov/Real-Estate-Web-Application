@@ -42,7 +42,6 @@ INSTALLED_APPS = [
 
     'real_estate_web_application.real_estate',
     'real_estate_web_application.common',
-    'real_estate_web_application.comments',
     'real_estate_web_application.accounts'
 ]
 
