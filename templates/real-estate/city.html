@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load placeholder %}
+{% block content %}
+       <div class="form-wrapper">
+        <div class="register-container">
+            <h2>Create Location</h2>
+            <form method="post">
+                {{ form.city.errors }}
+                {{ form.city|placeholder:'City' }}
+                {{ form.state.errors }}
+                {{ form.state|placeholder:'State'  }}
+                {{ form.postcode.errors }}
+                {{ form.postcode|placeholder:'Postcode'  }}
+                {% csrf_token %}
+                <button type="submit" class="btn">Create</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

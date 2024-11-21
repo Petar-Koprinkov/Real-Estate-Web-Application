@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('real_estate_web_application.common.urls')),
     path('account/', include('real_estate_web_application.accounts.urls')),
+    path('real-estate/', include('real_estate_web_application.real_estate.urls'))
 ]
 
 if settings.DEBUG:

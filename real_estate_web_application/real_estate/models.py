@@ -54,6 +54,10 @@ class Location(models.Model):
         max_length=100,
     )
 
+    postcode = models.CharField(
+        max_length=100,
+    )
+
     def __str__(self):
         return f'{self.city}, {self.state}'
 

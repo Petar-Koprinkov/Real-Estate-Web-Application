@@ -17,7 +17,7 @@
         <nav>
             <ul>
                 {% if request.user.is_authenticated %}
-                    <li><a href="#">Create Location</a></li>
+                    <li><a href="{% url 'create-location' %}">Create Location</a></li>
                     <li><a href="#">Create Properties</a></li>
                     <li><a href="#">All Properties</a></li>
                     <li><a href="{% url 'profile-detail' request.user.pk%}">Profile</a></li>
