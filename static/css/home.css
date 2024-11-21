@@ -213,7 +213,7 @@ ul.listing-properties {
 }
 
 .listing-item .btn {
-    background-color: #3498db;
+    background: linear-gradient(90deg, #4CAF50, #1D976C);
     color: #fff;
     padding: 10px 20px;
     font-size: 0.9rem;
@@ -226,7 +226,7 @@ ul.listing-properties {
 }
 
 .listing-item .btn:hover {
-    background-color: #2980b9;
+    background: linear-gradient(90deg, #1D976C, #4CAF50);
 }
 
 footer {

@@ -6,12 +6,12 @@
         <div class="container">
             <h1>Find Your Dream Home</h1>
             <p>Explore listings of beautiful homes, apartments, and commercial spaces across the city.</p>
-            <a href="#" class="btn">Browse Listings</a>
+            <a href="{% url 'properties' %}" class="btn">Browse Listings</a>
         </div>
     </section>
     <section class="featured-listings">
         <div class="container">
-            <h2>Latest Properties</h2>
+            <h2>Exclusive Properties</h2>
             <div class="listing-grid">
                 <ul class="listing-properties">
                     {% for property in properties %}
