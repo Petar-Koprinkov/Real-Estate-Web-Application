@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="main-container">
+        <h1 class="available">Available Properties</h1>
+        <div class="property-container">
+            {% for property in properties %}
+                <div class="property">
+                    <img src="https://via.placeholder.com/800x400" alt="Apartment 1">
+                    <div class="property-details">
+                        <div class="property-title">Modern 2-Bedroom Apartment</div>
+                        <div class="property-description">
+                            A cozy, modern apartment with all the amenities you need. Perfect for small families or
+                            professionals.
+                        </div>
+                        <div class="property-price">$1,200/month</div>
+                    </div>
+                </div>
+            {% empty %}
+                <h1 class="unavailable">There are no Available Properties</h1>
+            {% endfor %}
+        </div>
+        <div class="pagination">
+             <span class="step-links">
+                 {% if page_obj.has_previous %}
+                     <a href="?page=1">&laquo; first</a>
+                     <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                 {% endif %}
+                 <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+             </span>
+                 {% if page_obj.has_next %}
+                     <a href="?page={{ page_obj.next_page_number }}">next</a>
+                     <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                 {% endif %}
+             </span>
+        </div>
+    </div>
+{% endblock %}
