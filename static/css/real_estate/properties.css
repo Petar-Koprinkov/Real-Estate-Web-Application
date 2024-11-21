@@ -65,6 +65,13 @@ h1.unavailable {
     text-align: center;
 }
 
+.property-details {
+    font-size: 1em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
 .property-description {
     font-size: 0.95em;
     color: #7f8c8d;
@@ -170,6 +177,10 @@ h1.unavailable {
 
     .property-title {
         font-size: 1.1em;
+    }
+
+    .property-details {
+        font-size: 1em;
     }
 
     .property-description {
