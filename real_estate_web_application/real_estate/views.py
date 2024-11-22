@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, DetailView, UpdateView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
 from real_estate_web_application.real_estate.forms import LocationForm, CreatePropertyForm, EditPropertyForm
 from real_estate_web_application.real_estate.models import Location, Properties
@@ -44,6 +44,18 @@ class EditPropertyView(UpdateView):
     form_class = EditPropertyForm
     template_name = 'real-estate/edit-property.html'
     success_url = reverse_lazy('home')
+
+
+class DeletePropertyView(DeleteView):
+    model = Properties
+    success_url = reverse_lazy('home')
+    template_name = 'accounts/delete-property.html'
+    context_object_name = 'property'
+
+    def delete(self, request, *args, **kwargs):
+        real_estate = self.get_object()
+        real_estate.delete()
+        return redirect(self.get_success_url())
 
 
 

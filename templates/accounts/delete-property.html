@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="form-wrapper">
+        <div class="delete-container">
+            <h2>Are you sure you want to delete property listing?</h2>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="deletion-button">Delete</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

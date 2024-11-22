@@ -8,5 +8,6 @@ urlpatterns = [
     path('property/<int:pk>/', include([
         path('', views.DetailPropertyView.as_view(), name='detail-property'),
         path('edit/', views.EditPropertyView.as_view(), name='edit-property'),
+        path('delete/', views.DeletePropertyView.as_view(), name='delete-property'),
     ]))
 ]

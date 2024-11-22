@@ -15,7 +15,7 @@
         </div>
         <div class="actions">
             <a href="{% url 'edit-property' property.pk%}"><button class="btn-edit">Edit</button></a>
-            <button class="btn-delete">Delete</button>
+            <a href="{% url 'delete-property' property.pk%}"><button class="btn-delete">Delete</button></a>
         </div>
         <div class="comments-section">
             <h2>Comments</h2>
