@@ -16,3 +16,7 @@ class BasePropertyForm(forms.ModelForm):
 
 class CreatePropertyForm(BasePropertyForm):
     pass
+
+
+class EditPropertyForm(BasePropertyForm):
+    pass

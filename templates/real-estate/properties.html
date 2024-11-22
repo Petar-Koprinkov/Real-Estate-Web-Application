@@ -7,7 +7,7 @@
                 <img src="{{ property.property_image }}" alt="Apartment 1">
                 <div class="property-details">
                     <div class="property-title">{{ property.name }}</div>
-                    <div class="property-details">{{ property.content }}</div>
+                    <div class="property-details">{{ property.content|truncatechars:200 }}</div>
 
                 </div>
                 <div style="font-weight: bold;" class="property-details">{{ property.location }}</div>

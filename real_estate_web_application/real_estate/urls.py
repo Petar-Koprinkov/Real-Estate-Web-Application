@@ -5,7 +5,8 @@ urlpatterns = [
     path('create_location', views.CreateLocationView.as_view(), name='create-location'),
     path('properties/', views.PropertyListView.as_view(), name='properties'),
     path('add_property/', views.AddPropertyView.as_view(), name='add-property'),
-    path('', include([
-        path('<int:pk>', views.DetailPropertyView.as_view(), name='detail-property'),
+    path('property/<int:pk>/', include([
+        path('', views.DetailPropertyView.as_view(), name='detail-property'),
+        path('edit/', views.EditPropertyView.as_view(), name='edit-property'),
     ]))
 ]
