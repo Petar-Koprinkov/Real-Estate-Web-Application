@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DetailView
 
 from real_estate_web_application.real_estate.forms import LocationForm, CreatePropertyForm
 from real_estate_web_application.real_estate.models import Location, Properties
@@ -31,6 +31,13 @@ class AddPropertyView(CreateView):
         real_estate.owner = self.request.user
         real_estate.save()
         return super().form_valid(form)
+
+
+class DetailPropertyView(DetailView):
+    model = Properties
+    context_object_name = 'property'
+    template_name = 'real-estate/detail-property.html'
+
 
 
 

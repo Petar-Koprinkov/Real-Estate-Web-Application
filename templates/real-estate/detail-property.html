@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <h1>Property Details</h1>
+
+        <!-- Property Image -->
+        <img src="{{ property.property_image }}" alt="Property Image" class="property-image">
+
+        <!-- Property Details -->
+        <div class="details">
+            <p><strong>Name:</strong>{{ property.name }}</p>
+            <p><strong>Type:</strong> {{ property.type }}</p>
+            <p><strong>Floors:</strong> {{ property.floors }}</p>
+            <p><strong>Exposure:</strong> {{ property.exposure }}</p>
+            <p><strong>Value:</strong> ${{ property.value }}</p>
+            <p><strong>Location:</strong> {{ property.location }}</p>
+            <p><strong>Owner:</strong> {{ property.owner.profile }}</p>
+            <p><strong>Content:</strong> {{ property.content }}</p>
+        </div>
+
+        <!-- Comment Section -->
+        <div class="comments-section">
+            <h2>Comments</h2>
+
+            <!-- Comment List -->
+            <div id="comments-list">
+                <div class="comment">
+                    <p><strong>Jane Doe:</strong> This property looks amazing!</p>
+                </div>
+                <div class="comment">
+                    <p><strong>Alex Smith:</strong> Is it still available for purchase?</p>
+                </div>
+            </div>
+
+            <!-- Add Comment Form -->
+            <div class="comment-form">
+                <textarea id="comment-text" placeholder="Write your comment here..."></textarea>
+                <button onclick="addComment()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

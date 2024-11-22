@@ -13,7 +13,7 @@
                 <div style="font-weight: bold;" class="property-details">{{ property.location }}</div>
                     <div class="property-price">${{ property.value }}</div>
                 <div class="btn-container">
-                    <a href="#" class="btn-details">View Details</a>
+                    <a href="{% url 'detail-property' property.pk %}" class="btn-details">View Details</a>
                 </div>
             </div>
         {% empty %}

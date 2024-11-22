@@ -22,7 +22,7 @@
                                 <p>${{ property.value }}</p>
                                 <p>{{ property.location }}</p>
                                 <p>{{ property.floors }} Floor</p>
-                                <a href="#" class="btn">View Details</a>
+                                <a href="{% url 'detail-property' property.pk%}" class="btn">View Details</a>
                             </div>
                         </li>
                     {% empty %}
