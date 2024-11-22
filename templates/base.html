@@ -18,7 +18,7 @@
             <ul>
                 {% if request.user.is_authenticated %}
                     <li><a href="{% url 'create-location' %}">Create Location</a></li>
-                    <li><a href="#">Create Properties</a></li>
+                    <li><a href="{% url 'add-property' %}">Create Properties</a></li>
                     <li><a href="{% url 'properties' %}">All Properties</a></li>
                     <li><a href="{% url 'profile-detail' request.user.pk%}">Profile</a></li>
                     <form class='logout' method="post" action="{% url 'logout' %}">

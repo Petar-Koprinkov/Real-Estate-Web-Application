@@ -34,6 +34,12 @@ form {
 }
 
 .register-container form input,
+.register-container form select,
+.register-container form textarea {
+    margin-top: 5px;
+}
+
+.register-container form input,
 .register-container form select {
     padding: 12px;
     font-size: 16px;
@@ -63,6 +69,27 @@ form .btn {
 
 form .btn:hover {
     background: #0056b3;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #333;
+    font-size: 16px;
+}
+
+.errorlist {
+    font-weight: bold;
+    list-style: none;
+    color: red;
+    font-size: 15px;
 }
 
 @media (max-width: 480px) {

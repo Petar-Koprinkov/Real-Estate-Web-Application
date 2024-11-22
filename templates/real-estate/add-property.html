@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load placeholder %}
+
+{% block content %}
+    <div class="form-wrapper">
+        <div class="register-container">
+            <h2>Create Property Listing</h2>
+            <form method="post">
+                <p class="form-error">{{ form.name.errors }}</p>
+                <p class="form-label">{{ form.name.label }}</p>
+                {{ form.name|placeholder:'Name' }}
+
+                <p class="form-error">{{ form.type.errors }}</p>
+                <p class="form-label">{{ form.type.label }}</p>
+                {{ form.type }}
+
+                <p class="form-error">{{ form.property_image.errors }}</p>
+                <p class="form-label">{{ form.property_image.label }}</p>
+                {{ form.property_image|placeholder:'Picture' }}
+
+                <p class="form-error">{{ form.floors.errors }}</p>
+                <p class="form-label">{{ form.floors.label }}</p>
+                {{ form.floors|placeholder:'Floors' }}
+
+                <p class="form-error">{{ form.exposure.errors }}</p>
+                <p class="form-label">{{ form.exposure.label }}</p>
+                {{ form.exposure|placeholder:'Exposure' }}
+
+                <p class="form-error">{{ form.value.errors }}</p>
+                <p class="form-label">{{ form.value.label }}</p>
+                {{ form.value|placeholder:'Value' }}
+
+                <p class="form-error">{{ form.location.errors }}</p>
+                <p class="form-label">{{ form.location.label }}</p>
+                {{ form.location }}
+
+
+                <p class="form-error">{{ form.content.errors }}</p>
+                <p class=form-label><{{ form.content.label }}/p>
+                {{ form.content|placeholder:'Description' }}
+                {% csrf_token %}
+                <button type="submit" class="btn">Create</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

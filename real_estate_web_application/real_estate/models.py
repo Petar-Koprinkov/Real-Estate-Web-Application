@@ -1,7 +1,11 @@
+from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
 from django.db import models
 from real_estate_web_application.accounts.models import Profile
 from real_estate_web_application.real_estate.choices import TypeChoice
+
+
+UserModel = get_user_model()
 
 
 class Properties(models.Model):
@@ -39,7 +43,7 @@ class Properties(models.Model):
     content = models.TextField()
 
     owner = models.ForeignKey(
-        to=Profile,
+        to=UserModel,
         on_delete=models.CASCADE,
         related_name='property',
     )
