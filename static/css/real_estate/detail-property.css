@@ -129,6 +129,10 @@ h1, h2 {
     background-color: #218838;
 }
 
+form label {
+    display: none;
+}
+
 @media screen and (max-width: 768px) {
     .container-detail {
         padding: 15px;

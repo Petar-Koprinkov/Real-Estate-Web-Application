@@ -70,7 +70,6 @@ class Profile(models.Model):
         null=True,
     )
 
-
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 

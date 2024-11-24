@@ -2,6 +2,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
+from real_estate_web_application.common.forms import CreateCommentForm
 from real_estate_web_application.real_estate.forms import LocationForm, CreatePropertyForm, EditPropertyForm
 from real_estate_web_application.real_estate.models import Location, Properties
 
@@ -20,6 +21,9 @@ class PropertyListView(ListView):
     paginate_by = 3
 
 
+
+
+
 class AddPropertyView(CreateView):
     model = Properties
     form_class = CreatePropertyForm
@@ -33,10 +37,16 @@ class AddPropertyView(CreateView):
         return super().form_valid(form)
 
 
-class DetailPropertyView(DetailView):
+class DetailPropertyView(DetailView, CreateView):
     model = Properties
     context_object_name = 'property'
     template_name = 'real-estate/detail-property.html'
+    form_class = CreateCommentForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = self.object.comments.all()
+        return context
 
 
 class EditPropertyView(UpdateView):

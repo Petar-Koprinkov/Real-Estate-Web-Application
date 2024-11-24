@@ -37,7 +37,9 @@
 
                 <p class="form-error">{{ form.content.errors }}</p>
                 <p class=form-label><{{ form.content.label }}/p>
-                {{ form.content|placeholder:'Description' }}
+                <div class="comment-form">
+                    {{ form.content|placeholder:'Description' }}
+                </div>
                 {% csrf_token %}
                 <div class="button-container">
                     <button type="submit" class="btn">Edit</button>

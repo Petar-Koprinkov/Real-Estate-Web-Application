@@ -14,23 +14,27 @@
             <p><strong>Content:</strong> {{ property.content }}</p>
         </div>
         <div class="actions">
-            <a href="{% url 'edit-property' property.pk%}"><button class="btn-edit">Edit</button></a>
-            <a href="{% url 'delete-property' property.pk%}"><button class="btn-delete">Delete</button></a>
+            <a href="{% url 'edit-property' property.pk %}">
+                <button class="btn-edit">Edit</button>
+            </a>
+            <a href="{% url 'delete-property' property.pk %}">
+                <button class="btn-delete">Delete</button>
+            </a>
         </div>
         <div class="comments-section">
             <h2>Comments</h2>
             <div id="comments-list">
-                <div class="comment">
-                    <p><strong>Jane Doe:</strong> This property looks amazing!</p>
-                </div>
-                <div class="comment">
-                    <p><strong>Alex Smith:</strong> Is it still available for purchase?</p>
-                </div>
+                {% for comment in comments %}
+                    <div class="comment">
+                        <p><strong>{{ comment.user.profile }}:</strong> {{ comment.content }}</p>
+                    </div>
+                {% endfor %}
             </div>
-            <div class="comment-form">
-                <textarea id="comment-text" placeholder="Write your comment here..."></textarea>
-                <button onclick="addComment()">Submit</button>
-            </div>
+            <form action="{% url "comment" property.pk %}" class="comment-form" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit">Comment</button>
+            </form>
         </div>
     </div>
 
