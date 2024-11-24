@@ -39,7 +39,9 @@
                 <p class=form-label><{{ form.content.label }}/p>
                 {{ form.content|placeholder:'Description' }}
                 {% csrf_token %}
-                <button type="submit" class="btn">Edit</button>
+                <div class="button-container">
+                    <button type="submit" class="btn">Edit</button>
+                </div>
             </form>
         </div>
     </div>

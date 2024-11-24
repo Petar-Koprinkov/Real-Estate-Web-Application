@@ -57,6 +57,7 @@ form {
 }
 
 form .btn {
+    align-items: center;
     background: #4CAF50;
     color: #ffffff;
     padding: 10px;
@@ -65,6 +66,13 @@ form .btn {
     border-radius: 4px;
     cursor: pointer;
     text-align: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }
 
 form .btn:hover {
