@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container-statistics">
+        <h1>Properties Statistics</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Statistic</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Minimum Value</td>
+                <td class="stat-value">{{ min_value }}</td>
+            </tr>
+            <tr>
+                <td>Maximum Value</td>
+                <td class="stat-value">{{ max_value }}</td>
+            </tr>
+            <tr>
+                <td>Average Value</td>
+                <td class="stat-value">{{ avg_value }}</td>
+            </tr>
+            <tr>
+                <td>Most Common Exposure</td>
+                <td class="stat-value">{{ most_common_exposure }}</td>
+            </tr>
+            <tr>
+                <td>Least Common Exposure</td>
+                <td class="stat-value">{{ least_common_exposure }}</td>
+            </tr>
+            <tr>
+                <td>Most Common Type</td>
+                <td class="stat-value">{{ most_common_type }}</td>
+            </tr>
+            <tr>
+                <td>Least Common Type</td>
+                <td class="stat-value">{{ least_common_type }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
