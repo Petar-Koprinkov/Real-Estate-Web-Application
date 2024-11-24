@@ -26,7 +26,10 @@
             <div id="comments-list">
                 {% for comment in comments %}
                     <div class="comment">
-                        <p><strong>{{ comment.user.profile }}:</strong> {{ comment.content }}</p>
+                        <p><strong>{{ comment.user.profile }}:</strong> {{ comment.comment }}</p>
+                        <div class="comment-data">
+                            <strong>{{ comment.date }}</strong>
+                        </div>
                     </div>
                 {% endfor %}
             </div>

@@ -82,10 +82,19 @@ h1, h2 {
 }
 
 .comment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #f1f1f1;
     padding: 12px;
     border-radius: 6px;
     margin-bottom: 10px;
+}
+
+.comment-data {
+    margin-left: auto;
+    font-size: 0.85em;
+    color: gray;
 }
 
 .comment p {

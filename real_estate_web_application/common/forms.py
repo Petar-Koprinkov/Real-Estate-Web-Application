@@ -6,8 +6,8 @@ from real_estate_web_application.common.models import CommentModel
 class CreateCommentForm(forms.ModelForm):
     class Meta:
         model = CommentModel
-        fields = ('content',)
+        fields = ('comment',)
 
         widgets = {
-            'content': forms.Textarea(attrs={'placeholder': 'Add comment...'}),
+            'comment': forms.Textarea(attrs={'placeholder': 'Add comment...'}),
         }

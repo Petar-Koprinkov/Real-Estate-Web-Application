@@ -7,7 +7,7 @@ UserModel = get_user_model()
 
 
 class CommentModel(models.Model):
-    content = models.TextField()
+    comment = models.TextField()
 
     date = models.DateTimeField(auto_now_add=True)
 
