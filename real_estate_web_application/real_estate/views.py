@@ -3,8 +3,9 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
 from real_estate_web_application.common.forms import CreateCommentForm
-from real_estate_web_application.real_estate.forms import LocationForm, CreatePropertyForm, EditPropertyForm
-from real_estate_web_application.real_estate.models import Location, Properties
+from real_estate_web_application.real_estate.forms import LocationForm, CreatePropertyForm, EditPropertyForm, \
+    ParkingForm
+from real_estate_web_application.real_estate.models import Location, Properties, Parking
 
 
 class CreateLocationView(CreateView):
@@ -14,14 +15,18 @@ class CreateLocationView(CreateView):
     success_url = reverse_lazy('home')
 
 
+class CreateParkingView(CreateView):
+    model = Parking
+    form_class = ParkingForm
+    template_name = 'real-estate/parking.html'
+    success_url = reverse_lazy('home')
+
+
 class PropertyListView(ListView):
     model = Properties
     context_object_name = 'properties'
     template_name = 'real-estate/properties.html'
     paginate_by = 3
-
-
-
 
 
 class AddPropertyView(CreateView):
@@ -66,20 +71,3 @@ class DeletePropertyView(DeleteView):
         real_estate = self.get_object()
         real_estate.delete()
         return redirect(self.get_success_url())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

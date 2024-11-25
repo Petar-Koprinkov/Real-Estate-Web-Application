@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load placeholder %}
+{% block content %}
+       <div class="form-wrapper">
+        <div class="register-container">
+            <h2>Create Parking</h2>
+            <form method="post">
+                {{ form.parking_name.errors }}
+                {{ form.parking_name|placeholder:'Parking Name' }}
+                {{ form.parking_slots.errors }}
+                {{ form.parking_slots|placeholder:'Parking Slots'  }}
+                {{ form.location.errors }}
+                {{ form.location }}
+                {% csrf_token %}
+                <button type="submit" class="btn">Create</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

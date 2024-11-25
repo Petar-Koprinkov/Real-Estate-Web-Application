@@ -40,6 +40,12 @@ class Properties(models.Model):
         related_name='properties',
     )
 
+    parking = models.ForeignKey(
+        to='Parking',
+        related_name='properties',
+        on_delete=models.CASCADE,
+    )
+
     content = models.TextField()
 
     owner = models.ForeignKey(
@@ -47,6 +53,9 @@ class Properties(models.Model):
         on_delete=models.CASCADE,
         related_name='property',
     )
+
+    def __str__(self):
+        return self.name
 
 
 class Location(models.Model):
@@ -64,6 +73,26 @@ class Location(models.Model):
 
     def __str__(self):
         return f'{self.city}, {self.state}'
+
+
+class Parking(models.Model):
+
+    parking_name = models.CharField(
+        max_length=100,
+    )
+
+    parking_slots = models.PositiveIntegerField()
+
+    location = models.ForeignKey(
+        to='Location',
+        on_delete=models.CASCADE,
+        related_name='parking',
+    )
+
+    def __str__(self):
+        return self.parking_name
+
+
 
 
 

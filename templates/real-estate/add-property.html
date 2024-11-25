@@ -30,6 +30,10 @@
                 <p class="form-label">{{ form.value.label }}</p>
                 {{ form.value|placeholder:'Value' }}
 
+                <p class="form-error">{{ form.parking.errors }}</p>
+                <p class="form-label">{{ form.parking.label }}</p>
+                {{ form.parking }}
+
                 <p class="form-error">{{ form.location.errors }}</p>
                 <p class="form-label">{{ form.location.label }}</p>
                 {{ form.location }}
