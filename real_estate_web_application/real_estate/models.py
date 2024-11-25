@@ -43,7 +43,9 @@ class Properties(models.Model):
     parking = models.ForeignKey(
         to='Parking',
         related_name='properties',
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
     )
 
     content = models.TextField()
