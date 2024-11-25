@@ -5,11 +5,14 @@
         <div class="register-container">
             <h2>Create Location</h2>
             <form method="post">
-                {{ form.city.errors }}
+                <p class="form-error">{{ form.city.errors }}</p>
+                <p class="form-label">{{ form.city.label }}</p>
                 {{ form.city|placeholder:'City' }}
-                {{ form.state.errors }}
+                <p class="form-error">{{ form.state.errors }}</p>
+                <p class="form-label">{{ form.state.label }}</p>
                 {{ form.state|placeholder:'State'  }}
-                {{ form.postcode.errors }}
+                <p class="form-error">{{ form.postcode.errors }}</p>
+                <p class="form-label">{{ form.postcode.label }}</p>
                 {{ form.postcode|placeholder:'Postcode'  }}
                 {% csrf_token %}
                 <button type="submit" class="btn">Create</button>
