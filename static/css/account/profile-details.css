@@ -90,6 +90,31 @@
     text-align: center;
 }
 
+.favourite-button {
+    display: inline-block;
+    background: #FFC107; /* Golden Yellow */
+    color: #fff;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 25px;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    margin-bottom: 1rem; /* Space between the favourite button and other buttons */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    width: 180px;
+    text-align: center;
+}
+
+.favourite-button:hover {
+    background: #FFA000; /* Slightly darker yellow */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
 .delete-button:hover {
     background: red;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
@@ -112,6 +137,13 @@
     }
 
     .edit-button {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .favourite-button {
         font-size: 0.9rem;
         padding: 0.6rem 1.5rem;
     }
