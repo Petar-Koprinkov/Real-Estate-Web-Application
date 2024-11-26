@@ -31,7 +31,7 @@
             <div class="profile-detail-detail">
                 <span>User Type:</span> {{ profile.user.user_type }}
             </div>
-            <a href="#">
+            <a href="{% url 'favourite-listings' %}">
                 <button class="favourite-button">Favourites</button>
             </a>
             <a href="{% url 'profile-edit' profile.pk %}">

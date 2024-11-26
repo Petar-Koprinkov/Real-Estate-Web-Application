@@ -5,6 +5,7 @@ urlpatterns = [
     path('create_location', views.CreateLocationView.as_view(), name='create-location'),
     path('create_parking', views.CreateParkingView.as_view(), name='create-parking'),
     path('properties/', views.PropertyListView.as_view(), name='properties'),
+    path('favourite_listings/', views.FavouritePropertyView.as_view(), name='favourite-listings'),
     path('add_property/', views.AddPropertyView.as_view(), name='add-property'),
     path('property/<int:pk>/', include([
         path('', views.DetailPropertyView.as_view(), name='detail-property'),

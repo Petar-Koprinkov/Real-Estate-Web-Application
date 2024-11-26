@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+     <div class="favorites-container">
+        <h1>Favourite Teams</h1>
+        <div class="property-list"> 
+            {% for property in favourite_property %}
+                <p>{{ property.name }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

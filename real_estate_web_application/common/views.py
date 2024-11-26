@@ -24,4 +24,4 @@ def create_comment_view(request, pk):
             comment.user = request.user
             comment.save()
 
-        return redirect(request.META['HTTP_REFERER'] + f'#{pk}')
+        return redirect(request.META['HTTP_REFERER'])

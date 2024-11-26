@@ -21,6 +21,15 @@
             <a href="{% url 'delete-property' property.pk %}">
                 <button class="btn-delete">Delete</button>
             </a>
+            <form action="{% url 'favourite-listings' %}" method="POST">
+                {% csrf_token %}
+                <button class="btn-delete">
+                    <input type="hidden" name="property_id" value="{{ property.id }}">
+                    <div class="inner_button">
+                        Favourite
+                    </div>
+                </button>
+            </form>
         </div>
         <div class="comments-section">
             <h2>Comments</h2>

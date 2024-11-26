@@ -1,7 +1,7 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
-
 from real_estate_web_application.common.forms import CreateCommentForm
 from real_estate_web_application.real_estate.forms import LocationForm, CreatePropertyForm, EditPropertyForm, \
     ParkingForm
@@ -71,3 +71,46 @@ class DeletePropertyView(DeleteView):
         real_estate = self.get_object()
         real_estate.delete()
         return redirect(self.get_success_url())
+
+
+class FavouritePropertyView(View):
+    def get(self, request):
+        favourite_property = request.session.get('favourite_property')
+        context = {}
+
+        if not favourite_property:
+            context['favourite_property'] = []
+            context['is_favourite'] = False
+        else:
+            real_estate = Properties.objects.filter(id__in=favourite_property)
+            context['is_favourite'] = True
+            context['favourite_property'] = real_estate
+
+        return render(request, 'real-estate/favourite-property.html', context)
+
+    def post(self, request):
+        favourite_property = request.session.get('favourite_property', [])
+
+        property_id = int(request.POST.get('property_id'))
+
+        if property_id not in favourite_property:
+            favourite_property.append(property_id)
+        else:
+            favourite_property.remove(property_id)
+        request.session['favourite_property'] = favourite_property
+
+        return redirect(request.META['HTTP_REFERER'])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
