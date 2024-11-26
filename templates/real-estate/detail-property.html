@@ -23,12 +23,21 @@
             </a>
             <form action="{% url 'favourite-listings' %}" method="POST">
                 {% csrf_token %}
-                <button class="btn-delete">
-                    <input type="hidden" name="property_id" value="{{ property.id }}">
-                    <div class="inner_button">
-                        Favourite
-                    </div>
-                </button>
+                {% if property.id in favourite_property %}
+                    <button style='background-color: green' class="btn-delete">
+                        <input type="hidden" name="property_id" value="{{ property.id }}">
+                        <div class="inner_button">
+                            Add
+                        </div>
+                    </button>
+                {% else %}
+                    <button style='background-color: darkred' class="btn-delete">
+                        <input type="hidden" name="property_id" value="{{ property.id }}">
+                        <div class="inner_button">
+                            Remove
+                        </div>
+                    </button>
+                {% endif %}
             </form>
         </div>
         <div class="comments-section">
