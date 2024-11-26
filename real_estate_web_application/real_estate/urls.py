@@ -2,8 +2,8 @@ from django.urls import path, include
 from real_estate_web_application.real_estate import views
 
 urlpatterns = [
-    path('create_location', views.CreateLocationView.as_view(), name='create-location'),
-    path('create_parking', views.CreateParkingView.as_view(), name='create-parking'),
+    path('create_location/', views.CreateLocationView.as_view(), name='create-location'),
+    path('create_parking/', views.CreateParkingView.as_view(), name='create-parking'),
     path('properties/', views.PropertyListView.as_view(), name='properties'),
     path('favourite_listings/', views.FavouritePropertyView.as_view(), name='favourite-listings'),
     path('add_property/', views.AddPropertyView.as_view(), name='add-property'),

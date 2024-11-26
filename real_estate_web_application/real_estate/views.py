@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import View
@@ -8,28 +9,28 @@ from real_estate_web_application.real_estate.forms import LocationForm, CreatePr
 from real_estate_web_application.real_estate.models import Location, Properties, Parking
 
 
-class CreateLocationView(CreateView):
+class CreateLocationView(LoginRequiredMixin, CreateView):
     model = Location
     form_class = LocationForm
     template_name = 'real-estate/city.html'
     success_url = reverse_lazy('home')
 
 
-class CreateParkingView(CreateView):
+class CreateParkingView(LoginRequiredMixin, CreateView):
     model = Parking
     form_class = ParkingForm
     template_name = 'real-estate/parking.html'
     success_url = reverse_lazy('home')
 
 
-class PropertyListView(ListView):
+class PropertyListView(LoginRequiredMixin, ListView):
     model = Properties
     context_object_name = 'properties'
     template_name = 'real-estate/properties.html'
     paginate_by = 3
 
 
-class AddPropertyView(CreateView):
+class AddPropertyView(LoginRequiredMixin, CreateView):
     model = Properties
     form_class = CreatePropertyForm
     template_name = 'real-estate/add-property.html'
@@ -42,7 +43,7 @@ class AddPropertyView(CreateView):
         return super().form_valid(form)
 
 
-class DetailPropertyView(DetailView, CreateView):
+class DetailPropertyView(LoginRequiredMixin, DetailView, CreateView):
     model = Properties
     context_object_name = 'property'
     template_name = 'real-estate/detail-property.html'
@@ -55,14 +56,14 @@ class DetailPropertyView(DetailView, CreateView):
         return context
 
 
-class EditPropertyView(UpdateView):
+class EditPropertyView(LoginRequiredMixin, UpdateView):
     model = Properties
     form_class = EditPropertyForm
     template_name = 'real-estate/edit-property.html'
     success_url = reverse_lazy('home')
 
 
-class DeletePropertyView(DeleteView):
+class DeletePropertyView(LoginRequiredMixin, DeleteView):
     model = Properties
     success_url = reverse_lazy('home')
     template_name = 'accounts/delete-property.html'
@@ -74,7 +75,7 @@ class DeletePropertyView(DeleteView):
         return redirect(self.get_success_url())
 
 
-class FavouritePropertyView(View):
+class FavouritePropertyView(LoginRequiredMixin, View):
     def get(self, request):
         favourite_property = request.session.get('favourite_property')
         context = {}

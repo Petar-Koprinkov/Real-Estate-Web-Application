@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from real_estate_web_application.common.forms import CreateCommentForm
@@ -13,6 +14,7 @@ class HomePageView(ListView):
         return Properties.objects.order_by('-value')[:3]
 
 
+@login_required
 def create_comment_view(request, pk):
     real_estate = Properties.objects.get(id=pk)
     form = CreateCommentForm(request.POST or None)

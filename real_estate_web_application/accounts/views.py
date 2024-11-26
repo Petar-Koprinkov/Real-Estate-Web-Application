@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model, login
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.db.models import Max, Min, Avg, Count
 from django.shortcuts import redirect
@@ -27,13 +28,13 @@ class CustomLoginView(LoginView):
     template_name = 'accounts/login.html'
 
 
-class ProfileDetailView(DetailView):
+class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = Profile
     context_object_name = 'profile'
     template_name = 'accounts/profile-details.html'
 
 
-class ProfileEditView(UpdateView):
+class ProfileEditView(LoginRequiredMixin, UpdateView):
     model = Profile
     form_class = EditProfileForm
     context_object_name = 'profile'
@@ -48,7 +49,7 @@ class ProfileEditView(UpdateView):
         )
 
 
-class ProfileDeleteView(DeleteView):
+class ProfileDeleteView(LoginRequiredMixin, DeleteView):
     model = Profile
     success_url = reverse_lazy('home')
     template_name = 'accounts/delete-page.html'
@@ -62,7 +63,7 @@ class ProfileDeleteView(DeleteView):
         return redirect(self.get_success_url())
 
 
-class StatisticView(TemplateView):
+class StatisticView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/statistics.html'
 
     def get_context_data(self, **kwargs):
