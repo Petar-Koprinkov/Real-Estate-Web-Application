@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-     <div class="favorites-container">
-        <h1>Favourite Teams</h1>
-        <div class="property-list"> 
-            {% for property in favourite_property %}
-                <p>{{ property.name }}</p>
-            {% endfor %}
+    <div class="container">
+        <h1>Favourite Properties</h1>
+        <div class="listing-grid">
+            <ul class="listing-properties">
+                {% for property in favourite_property %}
+                    {% include 'includes/listing-item.html' %}
+                {% empty %}
+                    <h2> There are no favourite offers</h2>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 {% endblock %}
