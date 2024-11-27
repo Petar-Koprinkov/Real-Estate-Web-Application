@@ -32,6 +32,12 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+PROJECT_APPS = [
+    'real_estate_web_application.real_estate',
+    'real_estate_web_application.common',
+    'real_estate_web_application.accounts'
+]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,10 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'real_estate_web_application.real_estate',
-    'real_estate_web_application.common',
-    'real_estate_web_application.accounts'
-]
+] + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -142,3 +145,8 @@ LOGIN_REDIRECT_URL = reverse_lazy('home')
 LOGOUT_REDIRECT_URL = reverse_lazy('home')
 
 LOGIN_URL = reverse_lazy('login')
+
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_AGE = 14 * 24 * 60 * 60
