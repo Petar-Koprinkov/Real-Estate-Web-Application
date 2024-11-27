@@ -59,6 +59,10 @@ class Properties(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Property'
+        verbose_name_plural = 'Properties'
+
 
 class Location(models.Model):
     city = models.CharField(

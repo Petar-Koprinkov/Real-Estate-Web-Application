@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
 from real_estate_web_application.accounts.forms import CustomUserChangeForm, CustomUserCreationForm
+from real_estate_web_application.accounts.models import Profile
 
 UserModel = get_user_model()
 
@@ -42,3 +43,15 @@ class CustomUserModelAdmin(UserAdmin):
             },
         ),
     )
+
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ("first_name", "last_name", "email")
+    list_filter = ("first_name", "last_name", "email")
+    search_fields = ("first_name", "last_name")
+    ordering = ("last_name",)
+
+
+
+
