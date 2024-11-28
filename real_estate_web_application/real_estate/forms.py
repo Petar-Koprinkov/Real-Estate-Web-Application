@@ -29,7 +29,7 @@ class EditPropertyForm(BasePropertyForm):
 
 class SearchPropertyForm(forms.Form):
     property_name = forms.CharField(
-        widget=forms.TextInput(attrs={'placeholder': 'Search by property name...'}),
+        widget=forms.TextInput(attrs={'placeholder': 'Search by Property name...'}),
         label='',
         max_length=100,
         required=False,

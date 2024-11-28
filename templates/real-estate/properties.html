@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1 class="available">Available Properties</h1>
-    <form>
-        {{ search_form }}
-        <button type="submit">Search</button>
+    <form method="get">
+        <div class="search-container">
+            {{ search_form }}
+            <button type="submit">Search</button>
+        </div>
     </form>
     <div class="property-container">
         {% for property in properties %}
