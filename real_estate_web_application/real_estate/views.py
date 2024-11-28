@@ -5,7 +5,7 @@ from django.views import View
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from real_estate_web_application.common.forms import CreateCommentForm
 from real_estate_web_application.real_estate.forms import LocationForm, CreatePropertyForm, EditPropertyForm, \
-    ParkingForm
+    ParkingForm, SearchPropertyForm
 from real_estate_web_application.real_estate.models import Location, Properties, Parking
 
 
@@ -28,6 +28,18 @@ class PropertyListView(LoginRequiredMixin, ListView):
     context_object_name = 'properties'
     template_name = 'real-estate/properties.html'
     paginate_by = 3
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search_form'] = SearchPropertyForm(self.request.GET)
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get('property_name')
+        if query:
+            queryset = queryset.filter(name__icontains=query)
+        return queryset
 
 
 class AddPropertyView(LoginRequiredMixin, CreateView):
@@ -103,6 +115,7 @@ class FavouritePropertyView(LoginRequiredMixin, View):
         request.session['favourite_property'] = favourite_property
 
         return redirect(request.META['HTTP_REFERER'])
+
 
 
 

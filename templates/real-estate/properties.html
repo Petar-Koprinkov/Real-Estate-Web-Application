@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1 class="available">Available Properties</h1>
+    <form>
+        {{ search_form }}
+        <button type="submit">Search</button>
+    </form>
     <div class="property-container">
         {% for property in properties %}
             <div class="property">
@@ -11,7 +15,7 @@
 
                 </div>
                 <div style="font-weight: bold;" class="property-details">{{ property.location }}</div>
-                    <div class="property-price">${{ property.value }}</div>
+                <div class="property-price">${{ property.value }}</div>
                 <div class="btn-container">
                     <a href="{% url 'detail-property' property.pk %}" class="btn-details">View Details</a>
                 </div>
