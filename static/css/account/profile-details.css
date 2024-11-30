@@ -92,7 +92,7 @@
 
 .favourite-button {
     display: inline-block;
-    background: #FFC107; /* Golden Yellow */
+    background: #FFC107;
     color: #fff;
     border: none;
     padding: 15px 40px;
@@ -102,7 +102,7 @@
     cursor: pointer;
     text-transform: uppercase;
     margin-top: 1rem;
-    margin-bottom: 1rem; /* Space between the favourite button and other buttons */
+    margin-bottom: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     width: 180px;

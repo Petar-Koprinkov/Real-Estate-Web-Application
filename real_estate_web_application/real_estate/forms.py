@@ -27,6 +27,7 @@ class CreatePropertyForm(BasePropertyForm):
 class EditPropertyForm(BasePropertyForm):
     pass
 
+
 class SearchPropertyForm(forms.Form):
     property_name = forms.CharField(
         widget=forms.TextInput(attrs={'placeholder': 'Search by Property name...'}),
