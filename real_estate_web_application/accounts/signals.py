@@ -16,6 +16,8 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=UserModel)
 def save_user_profile(sender, instance, created, **kwargs):
     if created:
+        instance.is_staff = True
+        instance.save()
         if instance.user_type == "Buyer":
             group = Group.objects.get(name="Buyer")
         elif instance.user_type == "Seller":
