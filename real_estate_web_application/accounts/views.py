@@ -1,8 +1,8 @@
 from django.contrib.auth import get_user_model, login
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView
 from django.db.models import Max, Min, Avg, Count
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, TemplateView
 from real_estate_web_application.accounts.forms import CustomUserCreationForm, EditProfileForm
@@ -34,7 +34,7 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
     template_name = 'accounts/profile-details.html'
 
 
-class ProfileEditView(LoginRequiredMixin, UpdateView):
+class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Profile
     form_class = EditProfileForm
     context_object_name = 'profile'
@@ -48,8 +48,15 @@ class ProfileEditView(LoginRequiredMixin, UpdateView):
             }
         )
 
+    def test_func(self):
+        user = get_object_or_404(UserModel, pk=self.kwargs['pk'])
+        print(self.request.user)
+        print(user)
+        if self.request.user == user:
+            return self.request.user == user
 
-class ProfileDeleteView(LoginRequiredMixin, DeleteView):
+
+class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Profile
     success_url = reverse_lazy('home')
     template_name = 'accounts/delete-page.html'
@@ -61,6 +68,11 @@ class ProfileDeleteView(LoginRequiredMixin, DeleteView):
         user = self.get_object()
         user.delete()
         return redirect(self.get_success_url())
+
+    def test_func(self):
+        user = get_object_or_404(UserModel, pk=self.kwargs['pk'])
+        if self.request.user == user:
+            return self.request.user == user
 
 
 class StatisticView(LoginRequiredMixin, TemplateView):
