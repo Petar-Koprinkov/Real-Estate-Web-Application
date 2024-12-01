@@ -19,7 +19,7 @@ class CustomUserModelAdmin(UserAdmin):
 
     fieldsets = (
         ("Credentials", {"fields": ("username", "password")}),
-        ("Personal info", {"fields": ("first_name", "last_name", "email")}),
+        ("Personal info", {"fields": ()}),
         (
             "Permissions",
             {
