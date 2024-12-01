@@ -1,5 +1,5 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect, render
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
@@ -69,14 +69,19 @@ class DetailPropertyView(LoginRequiredMixin, DetailView, CreateView):
         return context
 
 
-class EditPropertyView(LoginRequiredMixin, UpdateView):
+class EditPropertyView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Properties
     form_class = EditPropertyForm
     template_name = 'real-estate/edit-property.html'
     success_url = reverse_lazy('home')
 
+    def test_func(self):
+        my_property = get_object_or_404(Properties, pk=self.kwargs['pk'])
+        if self.request.user != my_property.owner:
+            return self.request.user == my_property.owner
 
-class DeletePropertyView(LoginRequiredMixin, DeleteView):
+
+class DeletePropertyView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Properties
     success_url = reverse_lazy('home')
     template_name = 'accounts/delete-property.html'
@@ -86,6 +91,11 @@ class DeletePropertyView(LoginRequiredMixin, DeleteView):
         real_estate = self.get_object()
         real_estate.delete()
         return redirect(self.get_success_url())
+
+    def test_func(self):
+        my_property = get_object_or_404(Properties, pk=self.kwargs['pk'])
+        if self.request.user != my_property.owner:
+            return self.request.user == my_property.owner
 
 
 class FavouritePropertyView(LoginRequiredMixin, View):
