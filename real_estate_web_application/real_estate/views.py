@@ -76,9 +76,12 @@ class EditPropertyView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     success_url = reverse_lazy('home')
 
     def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+
         my_property = get_object_or_404(Properties, pk=self.kwargs['pk'])
         if self.request.user != my_property.owner:
-            return self.request.user == my_property.owner
+            return False
 
 
 class DeletePropertyView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -93,9 +96,12 @@ class DeletePropertyView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return redirect(self.get_success_url())
 
     def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+
         my_property = get_object_or_404(Properties, pk=self.kwargs['pk'])
         if self.request.user != my_property.owner:
-            return self.request.user == my_property.owner
+            return False
 
 
 class FavouritePropertyView(LoginRequiredMixin, View):

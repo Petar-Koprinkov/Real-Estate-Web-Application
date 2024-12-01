@@ -49,11 +49,12 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         )
 
     def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+
         user = get_object_or_404(UserModel, pk=self.kwargs['pk'])
-        print(self.request.user)
-        print(user)
         if self.request.user == user:
-            return self.request.user == user
+            return True
 
 
 class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -70,9 +71,12 @@ class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return redirect(self.get_success_url())
 
     def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+
         user = get_object_or_404(UserModel, pk=self.kwargs['pk'])
         if self.request.user == user:
-            return self.request.user == user
+            return True
 
 
 class StatisticView(LoginRequiredMixin, TemplateView):
