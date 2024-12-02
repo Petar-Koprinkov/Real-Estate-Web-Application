@@ -28,10 +28,20 @@ class CustomLoginView(LoginView):
     template_name = 'accounts/login.html'
 
 
-class ProfileDetailView(LoginRequiredMixin, DetailView):
+class ProfileDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = Profile
     context_object_name = 'profile'
     template_name = 'accounts/profile-details.html'
+
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+
+        user = get_object_or_404(UserModel, pk=self.kwargs['pk'])
+        if self.request.user != user:
+            return False
+
+        return True
 
 
 class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -53,8 +63,10 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
 
         user = get_object_or_404(UserModel, pk=self.kwargs['pk'])
-        if self.request.user == user:
-            return True
+        if self.request.user != user:
+            return False
+
+        return True
 
 
 class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -79,7 +91,7 @@ class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
 
 
-class StatisticView(LoginRequiredMixin, TemplateView):
+class StatisticView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     template_name = 'accounts/statistics.html'
 
     def get_context_data(self, **kwargs):
@@ -95,3 +107,12 @@ class StatisticView(LoginRequiredMixin, TemplateView):
         context['most_common_type'] = exposure_counts.first()['type']
         context['least_common_type'] = exposure_counts.last()['type']
         return context
+
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+
+        if self.request.user.user_type != 'Investor':
+            return False
+
+        return True
