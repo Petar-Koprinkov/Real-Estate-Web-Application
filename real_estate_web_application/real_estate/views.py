@@ -96,7 +96,6 @@ class DetailPropertyView(LoginRequiredMixin, DetailView, CreateView):
         context['current_user'] = self.request.user
         context['comments'] = self.object.comments.all()
         context['favourite_property'] = self.request.session.get('favourite_property', [])
-        print(self.request.session.get('favourite_property'))
         return context
 
 
