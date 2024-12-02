@@ -58,11 +58,13 @@
                     </div>
                 {% endfor %}
             </div>
-            <form action="{% url "comment" property.pk %}" class="comment-form" method="post">
-                {% csrf_token %}
-                {{ form }}
-                <button type="submit">Comment</button>
-            </form>
+            {% if current_user.user_type in 'Buyer Broker' %}
+                <form action="{% url "comment" property.pk %}" class="comment-form" method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button type="submit">Comment</button>
+                </form>
+            {% endif %}
         </div>
     </div>
 

@@ -93,6 +93,7 @@ class DetailPropertyView(LoginRequiredMixin, DetailView, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['current_user'] = self.request.user
         context['comments'] = self.object.comments.all()
         context['favourite_property'] = self.request.session.get('favourite_property', [])
         print(self.request.session.get('favourite_property'))
