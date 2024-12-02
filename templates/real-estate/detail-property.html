@@ -15,12 +15,14 @@
             <p><strong>Content:</strong> {{ property.content }}</p>
         </div>
         <div class="actions">
-            <a href="{% url 'edit-property' property.pk %}">
-                <button class="btn-edit">Edit</button>
-            </a>
-            <a href="{% url 'delete-property' property.pk %}">
-                <button class="btn-delete">Delete</button>
-            </a>
+            {% if request.user.pk == property.owner.pk %}
+                <a href="{% url 'edit-property' property.pk %}">
+                    <button class="btn-edit">Edit</button>
+                </a>
+                <a href="{% url 'delete-property' property.pk %}">
+                    <button class="btn-delete">Delete</button>
+                </a>
+            {% endif %}
             <form action="{% url 'favourite-listings' %}" method="POST">
                 {% csrf_token %}
                 {% if property.id in favourite_property %}
