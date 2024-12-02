@@ -9,18 +9,38 @@ from real_estate_web_application.real_estate.forms import LocationForm, CreatePr
 from real_estate_web_application.real_estate.models import Location, Properties, Parking
 
 
-class CreateLocationView(LoginRequiredMixin, CreateView):
+class CreateLocationView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Location
     form_class = LocationForm
     template_name = 'real-estate/city.html'
     success_url = reverse_lazy('home')
 
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
 
-class CreateParkingView(LoginRequiredMixin, CreateView):
+        user = self.request.user
+        if user.user_type == 'Buyer':
+            return False
+
+        return True
+
+
+class CreateParkingView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Parking
     form_class = ParkingForm
     template_name = 'real-estate/parking.html'
     success_url = reverse_lazy('home')
+
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+
+        user = self.request.user
+        if user.user_type == 'Buyer':
+            return False
+
+        return True
 
 
 class PropertyListView(LoginRequiredMixin, ListView):
@@ -42,7 +62,7 @@ class PropertyListView(LoginRequiredMixin, ListView):
         return queryset
 
 
-class AddPropertyView(LoginRequiredMixin, CreateView):
+class AddPropertyView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Properties
     form_class = CreatePropertyForm
     template_name = 'real-estate/add-property.html'
@@ -53,6 +73,16 @@ class AddPropertyView(LoginRequiredMixin, CreateView):
         real_estate.owner = self.request.user
         real_estate.save()
         return super().form_valid(form)
+
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+
+        user = self.request.user
+        if user.user_type == 'Buyer':
+            return False
+
+        return True
 
 
 class DetailPropertyView(LoginRequiredMixin, DetailView, CreateView):
@@ -83,6 +113,8 @@ class EditPropertyView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         if self.request.user != my_property.owner:
             return False
 
+        return True
+
 
 class DeletePropertyView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Properties
@@ -102,6 +134,8 @@ class DeletePropertyView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         my_property = get_object_or_404(Properties, pk=self.kwargs['pk'])
         if self.request.user != my_property.owner:
             return False
+
+        return True
 
 
 class FavouritePropertyView(LoginRequiredMixin, View):
@@ -131,18 +165,3 @@ class FavouritePropertyView(LoginRequiredMixin, View):
         request.session['favourite_property'] = favourite_property
 
         return redirect(request.META['HTTP_REFERER'])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
