@@ -1,14 +1,10 @@
-from django.contrib.auth import get_user_model
-from django.test import TestCase
-from django.urls import reverse
-from real_estate_web_application.real_estate.forms import CreatePropertyForm
-from real_estate_web_application.real_estate.models import Location, Parking, Properties
 from django.contrib.auth.models import Group
+from django.test import TestCase
 
-UserModel = get_user_model()
+from real_estate_web_application.real_estate.models import Location, Parking, Properties
 
 
-class TestAddPropertyView(TestCase):
+class TestPropertiesModel(TestCase):
     def setUp(self):
         self.seller_group = Group.objects.create(name='Seller')
         self.buyer_group = Group.objects.create(name='Buyer')
@@ -17,7 +13,7 @@ class TestAddPropertyView(TestCase):
 
         self.credential_owner = {
             'username': 'pkoprinkov11',
-            'password': '56932957eH10',
+            'password': '569hfjkjhg3295hfkjhjkg7eH10',
             'user_type': 'Investor'
         }
 
@@ -27,7 +23,7 @@ class TestAddPropertyView(TestCase):
             'postcode': 1700
         }
 
-        location = Location.objects.create(**self.credential_location)
+        location = Location(**self.credential_location)
 
         self.credential_parking = {
             'parking_name': 'Centur Parking',
@@ -35,7 +31,7 @@ class TestAddPropertyView(TestCase):
             'location': location
         }
 
-        parking = Parking.objects.create(**self.credential_parking)
+        parking = Parking(**self.credential_parking)
 
         self.credential_property = {
             'name': 'Maria Rose',
@@ -49,16 +45,20 @@ class TestAddPropertyView(TestCase):
             'content': 'Very nice!'
         }
 
-    def test__create_property__returns_valid_property(self):
-        user = UserModel.objects.create_user(**self.credential_owner)
-        self.client.login(**self.credential_owner)
-        form = CreatePropertyForm(data=self.credential_property)
+    def test__valid_str_method(self):
+        properties = Properties(**self.credential_property)
+        self.assertEqual(str(properties), properties.name)
 
-        form.save(commit=False)
-        form.instance.owner = user
 
-        response = self.client.post(reverse('add-property'))
 
-        self.assertEqual(form.instance.owner, user)
+
+
+
+
+
+
+
+
+
 
 
