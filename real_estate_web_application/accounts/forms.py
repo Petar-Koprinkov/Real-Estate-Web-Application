@@ -1,10 +1,8 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-
 from real_estate_web_application.accounts.choices import UserTypeChoice
 from real_estate_web_application.accounts.models import Profile
-from real_estate_web_application.accounts.form_mixins import DisabledMixin
 
 UserModel = get_user_model()
 
