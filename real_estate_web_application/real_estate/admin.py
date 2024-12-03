@@ -5,11 +5,11 @@ from real_estate_web_application.real_estate.models import Properties, Location,
 
 @admin.register(Properties)
 class PropertiesAdmin(admin.ModelAdmin):
-
     list_display = ('name', 'type', 'value', 'owner__profile')
     list_filter = ('type', 'value')
     search_fields = ('name',)
     ordering = ('name',)
+
 
 
 @admin.register(Location)
