@@ -16,6 +16,8 @@ class CustomUserModelAdmin(UserAdmin):
 
     list_display = ("pk", "username", "is_staff", "is_superuser")
     ordering = ("pk",)
+    search_fields = ("username",)
+    search_help_text = 'Search user by username.'
 
     fieldsets = (
         ("Credentials", {"fields": ("username", "password")}),
@@ -50,6 +52,7 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ("first_name", "last_name", "email")
     list_filter = ("first_name", "last_name", "email")
     search_fields = ("first_name", "last_name")
+    search_help_text = "Search profile by first name and/or last name."
     ordering = ("last_name",)
 
 
