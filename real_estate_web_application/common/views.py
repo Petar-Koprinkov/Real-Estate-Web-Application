@@ -16,7 +16,7 @@ class HomePageView(ListView):
 
 @login_required
 def create_comment_view(request, pk):
-    real_estate = Properties.objects.get(id=pk)
+    real_estate = Properties.objects.get(pk=pk)
     form = CreateCommentForm(request.POST or None)
 
     if request.method == 'POST':
@@ -26,4 +26,4 @@ def create_comment_view(request, pk):
             comment.user = request.user
             comment.save()
 
-        return redirect(request.META['HTTP_REFERER'])
+        return redirect(request.META['HTTP_REFERER'] + f'#{comment.pk}')
