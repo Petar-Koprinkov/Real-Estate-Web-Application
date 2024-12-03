@@ -51,7 +51,18 @@
             <div id="comments-list">
                 {% for comment in comments %}
                     <div class="comment" id="{{ comment.pk }}">
-                        <p><strong>{{ comment.user.profile }}:</strong> {{ comment.comment }}</p>
+                        <p>
+                            <strong>
+                                <a href="mailto: {{ comment.user.profile.email }}">
+                                    {% if  comment.user.profile.first_name and comment.user.profile.last_name %}
+                                        {{ comment.user.profile }}
+                                    {% else %}
+                                        Anonymous
+                                    {% endif %}
+                                </a>:
+                            </strong>
+                            {{ comment.comment }}
+                        </p>
                         <div class="comment-data">
                             <strong>{{ comment.date }}</strong>
                         </div>
