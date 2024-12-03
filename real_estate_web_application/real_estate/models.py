@@ -74,7 +74,7 @@ class Location(models.Model):
     )
 
     postcode = models.CharField(
-        max_length=100,
+        max_length=4,
     )
 
     def __str__(self):

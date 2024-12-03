@@ -7,6 +7,21 @@ class LocationForm(forms.ModelForm):
         model = Location
         fields = '__all__'
 
+        error_messages = {
+            'city': {
+                'required': 'You must enter a city.',
+                'max_length': 'Your length have to be maximum 100 characters.',
+            },
+            'state': {
+                'required': 'You must enter a state.',
+                'max_length': 'Your length have to be maximum 100 characters.',
+            },
+            'postcode': {
+                'required': 'You must enter a postcode.',
+                'max_length': 'Your length have to be maximum 100 characters.',
+            }
+        }
+
 
 class ParkingForm(forms.ModelForm):
     class Meta:
