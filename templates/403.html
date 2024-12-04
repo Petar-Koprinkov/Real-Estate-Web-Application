@@ -1,0 +1,14 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Permission Denied</title>
+     <link rel="stylesheet" href="{% static 'css/403.css' %}">
+</head>
+<body>
+    <h1>403 - Permission Denied</h1>
+    <p>You do not have permission to access this page.</p>
+    <a href="{% url 'home' %}">Return to Home</a>
+</body>
+</html>

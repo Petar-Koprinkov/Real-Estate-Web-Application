@@ -1,2 +1,2 @@
-# TODO: REST API for CRUD profiles
+# TODO: 404 page
 # TODO: Deploy the project

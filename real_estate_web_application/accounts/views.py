@@ -116,6 +116,3 @@ class StatisticView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
             return False
 
         return True
-
-
-
