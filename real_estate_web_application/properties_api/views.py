@@ -27,7 +27,7 @@ class LocationAPIView(ListAPIView):
 
 
 @extend_schema(
-    tags=['Parkings'],
+    tags=['Parking Lots'],
     request=ParkingSerializer,
     responses={200: ParkingSerializer},
 )
