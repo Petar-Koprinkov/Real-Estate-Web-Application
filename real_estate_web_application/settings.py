@@ -35,7 +35,8 @@ ALLOWED_HOSTS = []
 PROJECT_APPS = [
     'real_estate_web_application.real_estate',
     'real_estate_web_application.common',
-    'real_estate_web_application.accounts'
+    'real_estate_web_application.accounts',
+    'real_estate_web_application.properties_api'
 ]
 
 INSTALLED_APPS = [

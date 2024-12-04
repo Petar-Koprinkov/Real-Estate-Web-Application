@@ -11,8 +11,5 @@ urlpatterns = [
         path('<int:pk>/', views.ProfileDetailView.as_view(), name='profile-detail'),
         path('<int:pk>/edit/', views.ProfileEditView.as_view(), name='profile-edit'),
         path('<int:pk>/delete/', views.ProfileDeleteView.as_view(), name='profile-delete'),
-    ])),
-    # Url for Django REST
-    path('', views.ProfileViewApi.as_view(), name='retrieve-profile-api'),
-
+    ]))
 ]
