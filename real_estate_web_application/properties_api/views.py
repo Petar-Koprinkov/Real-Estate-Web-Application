@@ -7,6 +7,7 @@ from real_estate_web_application.real_estate.models import Location, Properties
 
 
 @extend_schema(
+    tags=['Profiles'],
     request=ProfileSerializer,
     responses={200: ProfileSerializer},
 )
@@ -16,6 +17,7 @@ class ProfileAPIView(ListAPIView):
 
 
 @extend_schema(
+    tags=['Locations'],
     request=LocationSerializer,
     responses={200: LocationSerializer},
 )
@@ -25,6 +27,7 @@ class LocationAPIView(ListAPIView):
 
 
 @extend_schema(
+    tags=['Parkings'],
     request=ParkingSerializer,
     responses={200: ParkingSerializer},
 )
@@ -34,6 +37,7 @@ class ParkingAPIView(ListAPIView):
 
 
 @extend_schema(
+    tags=['Properties'],
     request=PropertySerializer,
     responses={200: PropertySerializer},
 )
