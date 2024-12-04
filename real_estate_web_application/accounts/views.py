@@ -5,8 +5,11 @@ from django.db.models import Max, Min, Avg, Count
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, TemplateView
+from rest_framework.generics import RetrieveAPIView, ListAPIView
+
 from real_estate_web_application.accounts.forms import CustomUserCreationForm, EditProfileForm
 from real_estate_web_application.accounts.models import Profile
+from real_estate_web_application.accounts.serializers import ProfileSerializer
 from real_estate_web_application.real_estate.models import Properties
 
 UserModel = get_user_model()
@@ -116,3 +119,8 @@ class StatisticView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
             return False
 
         return True
+
+
+class ProfileViewApi(ListAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
