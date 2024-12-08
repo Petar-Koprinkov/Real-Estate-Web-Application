@@ -1,0 +1,221 @@
+.container-detail {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+.fav-form {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.fav-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.fav-button .inner-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fav-button svg {
+    transition: transform 0.2s ease;
+}
+
+.fav-button:hover svg {
+    transform: scale(1.2); /* Adds a hover effect */
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.property-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.details p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.details strong {
+    font-weight: bold;
+    font-size: 18px;
+    color: #007bff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-edit, .btn-delete {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-edit {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+
+.comments-section {
+    margin-top: 40px;
+}
+
+#comments-list {
+    margin-bottom: 20px;
+}
+
+.comment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1f1f1;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.comment-data {
+    margin-left: auto;
+    font-size: 0.85em;
+    color: gray;
+}
+
+.comment p {
+    margin: 0;
+    color: #333;
+}
+
+.comment strong {
+    color: #007bff;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.comment-form button {
+    padding: 12px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.comment-form button:hover {
+    background-color: #218838;
+}
+
+form label {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .container-detail {
+        padding: 15px;
+    }
+
+    .property-image {
+        max-height: 300px;
+    }
+
+    .details p {
+        font-size: 14px;
+    }
+
+    .btn-edit, .btn-delete {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .comment-form textarea {
+        min-height: 80px;
+    }
+
+    .comment-form button {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .property-image {
+        max-height: 250px;
+    }
+
+    .details p {
+        font-size: 12px;
+    }
+
+    .btn-edit, .btn-delete {
+        font-size: 12px;
+    }
+
+    .comment-form textarea {
+        min-height: 60px;
+    }
+
+    .comment-form button {
+        font-size: 12px;
+    }
+}

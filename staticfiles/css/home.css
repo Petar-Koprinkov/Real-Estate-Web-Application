@@ -1,0 +1,304 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #222;
+    color: #fff;
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .logo a {
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #3498db;
+    color: #fff;
+}
+
+form.logout {
+    display: inline;
+}
+
+form.logout button {
+    background-color: #222;
+    color: white;
+    font-size: 16px;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form.logout button:hover {
+    background-color: #c0392b;
+}
+
+form.logout button i {
+    font-style: normal;
+}
+
+
+main {
+    flex: 1;
+    background: url('/static/images/home_background.jpg') no-repeat center center/cover;
+}
+
+.inscription {
+    color: #fff;
+    padding: 4rem 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.inscription h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.inscription p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    text-align: center;
+    margin: 0 auto 1.5rem;
+}
+
+.inscription .btn {
+    padding: 0.75rem 1.5rem;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.inscription .btn:hover {
+    background-color: #0056b3;
+}
+
+.featured-listings {
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.featured-listings h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.listing-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+ul.listing-properties {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 960px;
+}
+
+.listing-properties li {
+    max-width: 280px;
+    height: 450px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.listing-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    cursor: pointer;
+    height: 100%;
+}
+
+.listing-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.listing-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+.listing-item h3 {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin: 15px 0 10px;
+}
+
+.listing-item p {
+    color: #666;
+    font-size: 1rem;
+    margin: 0 15px 15px;
+}
+
+.listing-item .btn {
+    background: linear-gradient(90deg, #4CAF50, #1D976C);
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 5px;
+    margin: 10px auto 15px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.listing-item .btn:hover {
+    background: linear-gradient(90deg, #1D976C, #4CAF50);
+}
+
+footer {
+    background-color: #222;
+    color: #fff;
+    padding: 1.5rem 0;
+    text-align: center;
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+}
+
+footer .social-links a {
+    color: #fff;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer .social-links a:hover {
+    color: #007bff;
+}
+
+@media (max-width: 768px) {
+    ul.listing-properties {
+        gap: 15px;
+    }
+
+    .listing-properties li {
+        max-width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .listing-properties li {
+        max-width: 100%;
+    }
+
+    .listing-item h3 {
+        font-size: 1.1rem;
+    }
+
+    .listing-item p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .inscription {
+        padding: 3rem 1rem;
+    }
+
+    .inscription h1 {
+        font-size: 1.5rem;
+    }
+
+    .inscription p {
+        font-size: 0.85rem;
+    }
+
+    .inscription .btn {
+        font-size: 1rem;
+    }
+}
