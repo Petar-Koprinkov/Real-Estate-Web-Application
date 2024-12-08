@@ -17,7 +17,6 @@ from django.urls import reverse_lazy
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -28,7 +27,8 @@ SECRET_KEY = os.getenv('SECRET_KEY', config('SECRET_KEY'))
 DEBUG = os.getenv('DEBUG', config('DEBUG')) == 'True'
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', config('ALLOWED_HOSTS', '127.0.0.1,localhost')).split(',')
-CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', config('CSRF_TRUSTED_ORIGINS', 'http://127.0.0.1,http://localhost')).split(',')
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS',
+                                 config('CSRF_TRUSTED_ORIGINS', 'http://127.0.0.1,http://localhost')).split(',')
 
 # Application definition
 
@@ -40,17 +40,17 @@ PROJECT_APPS = [
 ]
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+                     'django.contrib.admin',
+                     'django.contrib.auth',
+                     'django.contrib.contenttypes',
+                     'django.contrib.sessions',
+                     'django.contrib.messages',
+                     'django.contrib.staticfiles',
 
-    'rest_framework',
-    'drf_spectacular',
+                     'rest_framework',
+                     'drf_spectacular',
 
-] + PROJECT_APPS
+                 ] + PROJECT_APPS
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
@@ -94,7 +94,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'real_estate_web_application.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -108,7 +107,6 @@ DATABASES = {
         "PORT": os.getenv('DB_PORT', config('DB_PORT')),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -128,7 +126,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -139,7 +136,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
