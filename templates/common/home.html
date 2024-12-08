@@ -11,11 +11,13 @@
     </section>
     <section class="featured-listings">
         <div class="container">
-            <h2>Exclusive Properties</h2>
+            {% if properties %}
+                <h2>Exclusive Properties</h2>
+            {% endif %}
             <div class="listing-grid">
                 <ul class="listing-properties">
                     {% for property in properties %}
-                       {% include 'includes/listing-item.html' %}
+                        {% include 'includes/listing-item.html' %}
                     {% empty %}
                         <h2> There are not any offers</h2>
                     {% endfor %}
