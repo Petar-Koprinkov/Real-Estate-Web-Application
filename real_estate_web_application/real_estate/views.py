@@ -103,7 +103,13 @@ class EditPropertyView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Properties
     form_class = EditPropertyForm
     template_name = 'real-estate/edit-property.html'
-    success_url = reverse_lazy('home')
+
+    def get_success_url(self):
+        return reverse_lazy(
+            'detail-property',
+            kwargs={'pk': self.object.pk}
+
+        )
 
     def test_func(self):
         if self.request.user.is_superuser:
