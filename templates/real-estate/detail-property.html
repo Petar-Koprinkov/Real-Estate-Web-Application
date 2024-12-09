@@ -19,7 +19,7 @@
             <p><strong>Content:</strong> {{ property.content }}</p>
         </div>
         <div class="actions">
-            {% if request.user.pk == property.owner.pk %}
+            {% if request.user.pk == property.owner.pk or request.user.is_superuser %}
                 <a href="{% url 'edit-property' property.pk %}">
                     <button class="btn-edit">Edit</button>
                 </a>
