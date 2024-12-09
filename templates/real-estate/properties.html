@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1 class="available">Available Properties</h1>
-    <form method="get">
-        <div class="search-container">
-            {{ search_form }}
-            <button type="submit">Search</button>
-        </div>
-    </form>
+    {% if properties %}
+        <form method="get">
+            <div class="search-container">
+                {{ search_form }}
+                <button type="submit">Search</button>
+            </div>
+        </form>
+    {% endif %}
     <div class="property-container">
         {% for property in properties %}
             <div class="property">
@@ -26,6 +28,7 @@
             <h1 class="unavailable">There are no Available Properties</h1>
         {% endfor %}
     </div>
+    {% if properties %}
     <div class="pagination">
              <span class="step-links">
                  {% if page_obj.has_previous %}
@@ -41,4 +44,5 @@
                  {% endif %}
              </span>
     </div>
+    {% endif %}
 {% endblock %}

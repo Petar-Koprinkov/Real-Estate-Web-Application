@@ -23,7 +23,7 @@
                         <li><a href="{% url 'add-property' %}">Create Properties</a></li>
                     {% endif %}
                     <li><a href="{% url 'properties' %}">All Properties</a></li>
-                    {% if request.user.user_type == "Investor" %}
+                    {% if request.user.user_type == "Investor" and properties %}
                         <li><a href="{% url 'statistics' %}">Properties statistics</a></li>
                     {% endif %}
                     <li><a href="{% url 'profile-detail' request.user.pk %}">Profile</a></li>

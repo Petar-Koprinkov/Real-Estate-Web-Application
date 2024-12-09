@@ -13,6 +13,11 @@ class HomePageView(ListView):
     def get_queryset(self):
         return Properties.objects.order_by('-value')[:3]
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['properties'] = Properties.objects.order_by('-value')[:3]
+        return context
+
 
 @login_required
 def create_comment_view(request, pk):
