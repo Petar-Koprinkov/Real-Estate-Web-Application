@@ -1,13 +1,15 @@
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView
-from django.db.models import Max, Min, Avg, Count
+from django.db.models import Max, Min, Avg, Count, DecimalField
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, TemplateView
 from real_estate_web_application.accounts.forms import CustomUserCreationForm, EditProfileForm
 from real_estate_web_application.accounts.models import Profile
 from real_estate_web_application.real_estate.models import Properties
+from django.db.models import Value as V
+from django.db.models.functions import Coalesce
 
 UserModel = get_user_model()
 
@@ -96,16 +98,23 @@ class StatisticView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['max_value'] = Properties.objects.aggregate(max_value=Max('value'))['max_value']
-        context['min_value'] = Properties.objects.aggregate(min_value=Min('value'))['min_value']
-        avg_value = Properties.objects.aggregate(min_value=Avg('value'))['min_value']
+        context['max_value'] = Properties.objects.aggregate(
+            max_value=Coalesce(Max('value', output_field=DecimalField()), V(0, output_field=DecimalField()))
+        )['max_value']
+        context['min_value'] = Properties.objects.aggregate(
+            min_value=Coalesce(Min('value', output_field=DecimalField()), V(0, output_field=DecimalField()))
+        )['min_value']
+        avg_value = Properties.objects.aggregate(
+            avg_value=Coalesce(Avg('value', output_field=DecimalField()), V(0, output_field=DecimalField()))
+        )['avg_value']
         context['avg_value'] = round(avg_value, 2)
-        exposure_counts = Properties.objects.values('exposure').annotate(count=Count('exposure')).order_by('-count')
-        context['most_common_exposure'] = exposure_counts.first()['exposure']
-        context['least_common_exposure'] = exposure_counts.last()['exposure']
-        exposure_counts = Properties.objects.values('type').annotate(count=Count('type')).order_by('-count')
-        context['most_common_type'] = exposure_counts.first()['type']
-        context['least_common_type'] = exposure_counts.last()['type']
+        exposure_counts = list(
+            Properties.objects.values('exposure').annotate(count=Count('exposure')).order_by('-count'))
+        context['most_common_exposure'] = exposure_counts[0]['exposure'] if exposure_counts else 'N/A'
+        context['least_common_exposure'] = exposure_counts[-1]['exposure'] if exposure_counts else 'N/A'
+        type_counts = list(Properties.objects.values('type').annotate(count=Count('type')).order_by('-count'))
+        context['most_common_type'] = type_counts[0]['type'] if type_counts else 'N/A'
+        context['least_common_type'] = type_counts[-1]['type'] if type_counts else 'N/A'
         return context
 
     def test_func(self):
