@@ -19,8 +19,8 @@
                 {% if request.user.is_authenticated %}
                     {% if request.user.user_type != "Buyer" or request.user.is_superuser %}
                         <li><a href="{% url 'create-location' %}">Create Location</a></li>
-                        <li><a href="{% url 'create-parking' %}">Create parking</a></li>
-                        <li><a href="{% url 'add-property' %}">Create Properties</a></li>
+                        <li><a href="{% url 'create-parking' %}">Create Parking</a></li>
+                        <li><a href="{% url 'add-property' %}">Create Property</a></li>
                     {% endif %}
                     <li><a href="{% url 'properties' %}">All Properties</a></li>
                     {% if request.user.user_type == "Investor" or request.user.is_superuser %}
