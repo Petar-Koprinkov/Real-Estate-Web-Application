@@ -24,3 +24,23 @@
 
 ![login](https://github.com/user-attachments/assets/f6a8dbb5-27f6-4dd0-96d4-cd0198817dcb)
 
+### 📌 Header
+- **Navigation Buttons**:
+  - **Create Location**: Redirects to the Form in which we create a location where the property will be located.
+  - **Create Parking**: Redirects to the Form in which we create a parking space.
+  - **Create Property**: Redirects to the Form in which we create a property.
+  - **All Properties**: Allows users to view all properties in the website.
+  - **Properties statistics**: Redirects to the `Properties statistics` page, but it is ONLY for users which user type is 'Investor'.
+
+  - **User Authentication Buttons**:
+    - **Login**: Displays a login button if the user is not logged in.
+    - **Logout**: Allows users to log out.
+    - **Register**: Allows users to make an registration in the website.
+
+**Header when user is not logged in:**
+
+
+
+**Header when user is logged in:**
+
+
