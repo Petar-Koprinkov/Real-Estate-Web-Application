@@ -3,7 +3,7 @@ from rest_framework.generics import ListAPIView
 from real_estate_web_application.accounts.models import Profile
 from real_estate_web_application.properties_api.serializers import LocationSerializer, ProfileSerializer, \
     ParkingSerializer, PropertySerializer
-from real_estate_web_application.real_estate.models import Location, Properties
+from real_estate_web_application.real_estate.models import Location, Properties, Parking
 
 
 @extend_schema(
@@ -32,7 +32,7 @@ class LocationAPIView(ListAPIView):
     responses={200: ParkingSerializer},
 )
 class ParkingAPIView(ListAPIView):
-    queryset = Profile.objects.all()
+    queryset = Parking.objects.all()
     serializer_class = ParkingSerializer
 
 
