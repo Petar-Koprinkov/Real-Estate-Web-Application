@@ -158,6 +158,9 @@ Pre-generated user accounts are provided for testing purposes:
 
 
 ## ➕ API Endpoints
+
+Swagger UI - **`/properties-api/`**
+
 - **`api/properites/location_api`**: Fetch and filter all locations.  
 - **`api/properites/parking-api`**: Fetch and filter all parkings.  
 - **`api/properites/real_estate_api/`**: Fetch and filter all properties. 
