@@ -43,7 +43,7 @@ class CreateParkingView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return True
 
 
-class PropertyListView(LoginRequiredMixin, ListView):
+class PropertyListView(ListView):
     model = Properties
     context_object_name = 'properties'
     template_name = 'real-estate/properties.html'
