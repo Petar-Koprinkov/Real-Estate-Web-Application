@@ -156,6 +156,10 @@ Pre-generated user accounts are provided for testing purposes:
 
 - **Favourites**: The user can see which properties he has marked as favorites
 
+### ☎️ Contact us (Footer)
+
+![footer](https://github.com/user-attachments/assets/608fc795-452b-4843-b0ee-9d7cc225105a)
+
 
 ## ➕ API Endpoints
 
