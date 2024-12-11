@@ -118,4 +118,51 @@ Pre-generated user accounts are provided for testing purposes:
 ![login-nav](https://github.com/user-attachments/assets/f26cc664-50d7-41d0-96f2-59dc074241e0)
 
 
+### 🏠 Home Page
+
+![home page](https://github.com/user-attachments/assets/ac73e949-250f-41d1-9569-93b8dbcfc4f9)
+
+- **Browse Listings**: View all properties.
+- **Exclusive Properties**: View the three most expensive properties, which is exclusive.
+
+### 🌐 All Properites Page
+
+![all properties](https://github.com/user-attachments/assets/10199297-b2c5-4e23-bd72-c42f75e4c796)
+
+- **Search Form**: You can search property by name.
+- **List of Properties**: View all properties.
+- **Pagination**: On one page there are only three properties.
+
+### 📝 Details Property Page
+
+![detail 1](https://github.com/user-attachments/assets/83ae434d-5ef9-484a-99f5-f874e7a6a2c0)
+![detail 2](https://github.com/user-attachments/assets/09f8f8b8-a02e-40a6-a4d0-3aada29d1dd3)
+
+
+- **Property Details**: You can see every detail of property - image, name, price, type, exposure, owner, floor, location, desription and is there parking.
+- **Comment Section**: You can view all comments of other users in this section.
+- **Comment Form**: Only if you are buyer or broker then you can comment the property.
+
+
+### 📊 Properties Statistics Page
+
+![properties statistics](https://github.com/user-attachments/assets/fcd83e0a-b247-4633-9dc9-ad135a07ea8a)
+
+- **Statistic Table**: Only users which are Investors have permission to access this page
+
+### 👤 Profile Page
+
+![profile](https://github.com/user-attachments/assets/555d3869-3644-4f0f-aaea-ace34a04eb20)
+
+- **Favourites**: The user can see which properties he has marked as favorites
+
+
+## ➕ API Endpoints
+- **`api/properites/location_api`**: Fetch and filter all locations.  
+- **`api/properites/parking-api`**: Fetch and filter all parkings.  
+- **`api/properites/real_estate_api/`**: Fetch and filter all properties. 
+- **`api/properites/profile_api`**: Fetch and filter all profiles. 
+
+
+
 
