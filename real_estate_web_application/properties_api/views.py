@@ -1,6 +1,6 @@
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -13,7 +13,7 @@ from real_estate_web_application.real_estate.models import Location, Properties,
 @extend_schema(
     tags=['Profiles'],
     request=ProfileSerializer,
-    responses={200: ProfileSerializer},
+    responses={200: ProfileSerializer, 400: ProfileSerializer},
 )
 class ProfileAPIView(ListAPIView):
     queryset = Profile.objects.all()
@@ -23,7 +23,7 @@ class ProfileAPIView(ListAPIView):
 @extend_schema(
     tags=['Locations'],
     request=LocationSerializer,
-    responses={200: LocationSerializer},
+    responses={200: LocationSerializer, 400: LocationSerializer},
 )
 class LocationAPIView(APIView):
     def get(self, request, *args, **kwargs):
@@ -39,6 +39,48 @@ class LocationAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@extend_schema(
+    tags=['Location'],
+    request=LocationSerializer,
+    responses={200: LocationSerializer, 404: LocationSerializer},
+)
+class LocationListAPIViewSet(APIView):
+    @staticmethod
+    def get_object(pk):
+        return get_object_or_404(Location, pk=pk)
+
+    def get(self, request, pk: int):
+        location = self.get_object(pk)
+        serializer = LocationSerializer(location)
+        return Response(serializer.data)
+
+    def put(self, request, pk: int):
+        location = self.get_object(pk)
+        serializer = LocationSerializer(location, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, pk: int):
+        location = self.get_object(pk)
+        serializer = LocationSerializer(location, request.data, partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk: int):
+        location = self.get_object(pk)
+        location.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 @extend_schema(
     tags=['Parking Lots'],
