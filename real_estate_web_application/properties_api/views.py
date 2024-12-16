@@ -85,11 +85,22 @@ class LocationListAPIViewSet(APIView):
 @extend_schema(
     tags=['Parking Lots'],
     request=ParkingSerializer,
-    responses={200: ParkingSerializer},
+    responses={200: ParkingSerializer, 400: ParkingSerializer},
 )
-class ParkingAPIView(ListAPIView):
-    queryset = Parking.objects.all()
-    serializer_class = ParkingSerializer
+class ParkingAPIView(APIView):
+    def get(self, request, *args, **kwargs):
+        parkings = Parking.objects.all()
+        serializer = ParkingSerializer(parkings, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, *args, **kwargs):
+        serializer = ParkingSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @extend_schema(

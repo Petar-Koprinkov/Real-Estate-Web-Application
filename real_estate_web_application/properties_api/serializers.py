@@ -27,11 +27,16 @@ class LocationSerializer(serializers.ModelSerializer):
 
 
 class ParkingSerializer(serializers.ModelSerializer):
-    location = LocationSerializer(read_only=True)
+    location = LocationSerializer()
 
     class Meta:
         model = Parking
         fields = '__all__'
+
+    def create(self, validated_data):
+        location_data = validated_data.pop('location')
+        location = Location.objects.create(**location_data)
+        return Parking.objects.create(location=location, **validated_data)
 
 
 class PropertySerializer(serializers.ModelSerializer):
@@ -42,6 +47,3 @@ class PropertySerializer(serializers.ModelSerializer):
     class Meta:
         model = Properties
         fields = '__all__'
-
-
-
