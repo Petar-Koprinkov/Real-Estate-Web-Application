@@ -36,7 +36,23 @@ class ParkingSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         location_data = validated_data.pop('location')
         location = Location.objects.create(**location_data)
-        return Parking.objects.create(location=location, **validated_data)
+        parking = Parking.objects.create(location=location, **validated_data)
+        return parking
+
+    def update(self, instance, validated_data):
+        location_data = validated_data.pop('location', None)
+
+        if location_data:
+            for key, value in location_data.items():
+                setattr(instance.location, key, value)
+            instance.location.save()
+
+        for key, value in validated_data.items():
+            setattr(instance, key, value)
+        instance.save()
+
+        return instance
+
 
 
 class PropertySerializer(serializers.ModelSerializer):

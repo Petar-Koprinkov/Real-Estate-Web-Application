@@ -99,8 +99,51 @@ class ParkingAPIView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@extend_schema(
+    tags=['Parking Lot'],
+    request=ParkingSerializer,
+    responses={200: ParkingSerializer, 400: ParkingSerializer},
+)
+class ParkingAPIViewSet(APIView):
+
+    @staticmethod
+    def get_object(pk):
+        return get_object_or_404(Parking, pk=pk)
+
+    def get(self, request, pk: int):
+        parking = self.get_object(pk)
+        serializer = ParkingSerializer(parking)
+        return Response(serializer.data)
+
+    def put(self, request, pk: int):
+        parking = self.get_object(pk)
+        serializer = ParkingSerializer(parking, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, pk: int):
+        parking = self.get_object(pk)
+        serializer = ParkingSerializer(parking, request.data, partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk: int):
+        parking = self.get_object(pk)
+        parking.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 
 
 @extend_schema(

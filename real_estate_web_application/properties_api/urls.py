@@ -7,7 +7,10 @@ urlpatterns = [
         path('', views.LocationAPIView.as_view(), name='location-list'),
         path('<int:pk>', views.LocationListAPIViewSet.as_view(), name='location-api'),
     ])),
-    path('parking_api/', views.ParkingAPIView.as_view(), name='profile-api'),
+    path('parking_api/', include([
+        path('', views.ParkingAPIView.as_view(), name='parking-list'),
+        path('<int:pk>', views.ParkingAPIViewSet.as_view(), name='parking-api'),
+    ])),
     path('real_estate_api/', views.PropertiesAPIView.as_view(), name='real-estate-api'),
 
 ]
