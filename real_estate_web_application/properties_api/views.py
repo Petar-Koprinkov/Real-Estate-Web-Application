@@ -51,6 +51,14 @@ class LocationListAPIViewSet(APIView):
     def get_object(pk):
         return get_object_or_404(Location, pk=pk)
 
+    @staticmethod
+    def valid_serializer(serializer):
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     def get(self, request, pk: int):
         location = self.get_object(pk)
         serializer = LocationSerializer(location)
@@ -60,21 +68,13 @@ class LocationListAPIViewSet(APIView):
         location = self.get_object(pk)
         serializer = LocationSerializer(location, data=request.data)
 
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return self.valid_serializer(serializer)
 
     def patch(self, request, pk: int):
         location = self.get_object(pk)
         serializer = LocationSerializer(location, request.data, partial=True)
 
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return self.valid_serializer(serializer)
 
     def delete(self, request, pk: int):
         location = self.get_object(pk)
@@ -113,6 +113,14 @@ class ParkingAPIViewSet(APIView):
     def get_object(pk):
         return get_object_or_404(Parking, pk=pk)
 
+    @staticmethod
+    def valid_serializer(serializer):
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     def get(self, request, pk: int):
         parking = self.get_object(pk)
         serializer = ParkingSerializer(parking)
@@ -122,21 +130,13 @@ class ParkingAPIViewSet(APIView):
         parking = self.get_object(pk)
         serializer = ParkingSerializer(parking, data=request.data)
 
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return self.valid_serializer(serializer)
 
     def patch(self, request, pk: int):
         parking = self.get_object(pk)
         serializer = ParkingSerializer(parking, request.data, partial=True)
 
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return self.valid_serializer(serializer)
 
     def delete(self, request, pk: int):
         parking = self.get_object(pk)
