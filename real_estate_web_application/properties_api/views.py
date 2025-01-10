@@ -55,11 +55,10 @@ class ProfilesListAPIViewSet(APIView):
         serializer = ProfileSerializer(profile, data=request.data, partial=True)
         return self.get_validation(serializer)
 
-
-
-
-
-
+    def delete(self, request, pk: int):
+        profile = self.get_profile(pk)
+        profile.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 @extend_schema(
