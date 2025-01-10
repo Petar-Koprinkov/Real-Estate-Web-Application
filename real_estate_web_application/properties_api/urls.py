@@ -2,7 +2,10 @@ from django.urls import path, include
 from real_estate_web_application.properties_api import views
 
 urlpatterns = [
-    path('profile_api/', views.ProfileAPIView.as_view(), name='profile-api'),
+    path('profile_api/', include([
+        path('',  views.ProfileAPIView.as_view(), name='profiles-api'),
+        path('<int:pk>', views.ProfilesListAPIViewSet.as_view(), name='profile-list'),
+    ])),
     path('location_api/', include([
         path('', views.LocationAPIView.as_view(), name='location-list'),
         path('<int:pk>', views.LocationListAPIViewSet.as_view(), name='location-api'),
