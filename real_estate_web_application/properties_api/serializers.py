@@ -9,7 +9,7 @@ UserModel = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
-        fields = ['username']
+        fields = ['username', 'password', 'user_type']
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -38,7 +38,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
-
 
 
 class LocationSerializer(serializers.ModelSerializer):
