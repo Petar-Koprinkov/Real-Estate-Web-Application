@@ -15,9 +15,11 @@ from real_estate_web_application.real_estate.models import Location, Properties,
     request=ProfileSerializer,
     responses={200: ProfileSerializer, 400: ProfileSerializer},
 )
-class ProfileAPIView(ListAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
+class ProfileAPIView(APIView):
+    def get(self, request, *args, **kwargs):
+        profile = Profile.objects.all()
+        serializer = ProfileSerializer(profile, many=True)
+        return Response(serializer.data)
 
 
 @extend_schema(
