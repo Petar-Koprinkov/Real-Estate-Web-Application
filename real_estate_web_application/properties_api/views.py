@@ -50,6 +50,13 @@ class ProfilesListAPIViewSet(APIView):
         serializer = ProfileSerializer(profile, data=request.data)
         return self.get_validation(serializer)
 
+    def patch(self, request, pk: int):
+        profile = self.get_profile(pk)
+        serializer = ProfileSerializer(profile, data=request.data, partial=True)
+        return self.get_validation(serializer)
+
+
+
 
 
 
