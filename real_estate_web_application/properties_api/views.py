@@ -1,13 +1,27 @@
+from django.contrib.auth import get_user_model
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.generics import ListAPIView, get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 from real_estate_web_application.accounts.models import Profile
 from real_estate_web_application.properties_api.serializers import LocationSerializer, ProfileSerializer, \
-    ParkingSerializer, PropertySerializer
+    ParkingSerializer, PropertySerializer, UserSerializer
 from real_estate_web_application.real_estate.models import Location, Properties, Parking
+
+
+UserModel = get_user_model()
+
+@extend_schema(
+    tags=['Users'],
+    request=UserSerializer(),
+    responses={200: UserSerializer(), 400: UserSerializer()},
+)
+class UserAPIView(APIView):
+    def get(self, request, *args, **kwargs):
+        users = UserModel.objects.all()
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)
 
 
 @extend_schema(
