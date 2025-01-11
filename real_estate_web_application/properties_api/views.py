@@ -44,10 +44,23 @@ class UserListAPIViewSet(APIView):
     def get_object(pk: int):
         return get_object_or_404(UserModel, pk=pk)
 
+    @staticmethod
+    def get_validation(serializer):
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     def get(self, request, pk: int):
         user = self.get_object(pk)
         serializer = UserSerializer(user)
         return Response(serializer.data)
+
+    def put(self, request, pk: int):
+        user = self.get_object(pk)
+        serializer = UserSerializer(user, data=request.data)
+        return self.get_validation(serializer)
 
 
 @extend_schema(
