@@ -55,7 +55,11 @@ class ParkingSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         location_data = validated_data.pop('location')
-        location = Location.objects.create(**location_data)
+        location = Location.objects.filter(**location_data).first()
+
+        if not location:
+            location = Location.objects.create(**location_data)
+
         parking = Parking.objects.create(location=location, **validated_data)
         return parking
 
