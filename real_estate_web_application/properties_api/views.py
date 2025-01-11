@@ -9,8 +9,8 @@ from real_estate_web_application.properties_api.serializers import LocationSeria
     ParkingSerializer, PropertySerializer, UserSerializer
 from real_estate_web_application.real_estate.models import Location, Properties, Parking
 
-
 UserModel = get_user_model()
+
 
 @extend_schema(
     tags=['Users'],
@@ -32,6 +32,22 @@ class UserAPIView(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+@extend_schema(
+    tags=['User'],
+    request=UserSerializer(),
+    responses={200: UserSerializer(), 400: UserSerializer()},
+)
+class UserListAPIViewSet(APIView):
+
+    @staticmethod
+    def get_object(pk: int):
+        return get_object_or_404(UserModel, pk=pk)
+
+    def get(self, request, pk: int):
+        user = self.get_object(pk)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
 
 
 @extend_schema(
