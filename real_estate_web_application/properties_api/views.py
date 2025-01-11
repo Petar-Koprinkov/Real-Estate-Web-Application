@@ -67,7 +67,9 @@ class UserListAPIViewSet(APIView):
         serializer = UserSerializer(user, data=request.data, partial=True)
         return self.get_validation(serializer)
 
-
+    def delete(self, request, pk: int):
+        user = self.get_object(pk)
+        user.delete()
 
 
 @extend_schema(
