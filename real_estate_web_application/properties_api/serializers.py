@@ -79,10 +79,34 @@ class ParkingSerializer(serializers.ModelSerializer):
 
 
 class PropertySerializer(serializers.ModelSerializer):
-    owner = UserSerializer(read_only=True)
-    location = LocationSerializer(read_only=True)
-    parking = ParkingSerializer(read_only=True)
+    owner = UserSerializer()
+    location = LocationSerializer()
+    parking = ParkingSerializer()
 
     class Meta:
         model = Properties
         fields = '__all__'
+
+    def create(self, validated_data):
+        owner_data = validated_data.pop('owner')
+        location_data = validated_data.pop('location')
+        parking_data = validated_data.pop('parking')
+
+        owner = UserModel.objects.filter(**owner_data).first()
+
+        if not owner:
+            owner = UserModel.objects.create(**owner_data)
+
+        location = Location.objects.filter(**location_data).first()
+
+        if not location:
+            location = Location.objects.create(**location_data)
+
+        parking = Parking.objects.filter(**parking_data).first()
+
+        if not parking:
+            parking = Parking.objects.create(location=location, **parking_data)
+
+        my_property = Properties.objects.create(owner=owner, location=location, parking=parking, **validated_data)
+
+        return my_property
