@@ -62,6 +62,13 @@ class UserListAPIViewSet(APIView):
         serializer = UserSerializer(user, data=request.data)
         return self.get_validation(serializer)
 
+    def patch(self, request, pk: int):
+        user = self.get_object(pk)
+        serializer = UserSerializer(user, data=request.data, partial=True)
+        return self.get_validation(serializer)
+
+
+
 
 @extend_schema(
     tags=['Profiles'],
