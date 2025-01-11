@@ -253,6 +253,17 @@ class ParkingAPIViewSet(APIView):
     request=PropertySerializer,
     responses={200: PropertySerializer},
 )
-class PropertiesAPIView(ListAPIView):
-    queryset = Properties.objects.all()
-    serializer_class = PropertySerializer
+class PropertiesAPIView(APIView):
+    def get(self, request, *args, **kwargs):
+        properties = Properties.objects.all()
+        serializer = PropertySerializer(properties, many=True)
+        return Response(serializer.data)
+
+
+
+
+
+
+
+
+
