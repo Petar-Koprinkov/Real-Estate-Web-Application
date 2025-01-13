@@ -11,6 +11,13 @@ class UserSerializer(serializers.ModelSerializer):
         model = UserModel
         fields = ['id', 'username', 'password', 'user_type']
 
+    def create(self, validated_data):
+        password = validated_data.pop('password')
+        user = UserModel(**validated_data)
+        user.set_password(password)
+        user.save()
+        return user
+
 
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
@@ -89,8 +96,8 @@ class PropertySerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
 
-        location_data = validated_data.pop('location')
-        parking_data = validated_data.pop('parking')
+        location_data = validated_data.pop('location', None)
+        parking_data = validated_data.pop('parking', None)
 
         location = Location.objects.filter(**location_data).first()
 
