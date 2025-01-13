@@ -98,6 +98,7 @@ class PropertySerializer(serializers.ModelSerializer):
 
         location_data = validated_data.pop('location', None)
         parking_data = validated_data.pop('parking', None)
+        parking_data.pop('location', None)
 
         location = Location.objects.filter(**location_data).first()
 
