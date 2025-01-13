@@ -107,15 +107,19 @@ class PropertySerializer(serializers.ModelSerializer):
         return my_property
 
     def update(self, instance, validated_data):
-        location_data = validated_data.pop('location')
-        parking_data = validated_data.pop('parking')
-        parking_data.pop('location')
+        location_data = validated_data.pop('location', None)
+        parking_data = validated_data.pop('parking', None)
 
-        for key, value in location_data.items():
-            setattr(instance.location, key, value)
+        if parking_data:
+            parking_data.pop('location')
 
-        for key, value in parking_data.items():
-            setattr(instance.parking, key, value)
+        if location_data:
+            for key, value in location_data.items():
+                setattr(instance.location, key, value)
+
+        if parking_data:
+            for key, value in parking_data.items():
+                setattr(instance.parking, key, value)
 
         for key, value in validated_data.items():
             setattr(instance, key, value)
@@ -123,10 +127,3 @@ class PropertySerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
-
-
-
-
-
-
-

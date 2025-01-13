@@ -299,5 +299,9 @@ class PropertiesAPIViewSet(APIView):
     def put(self, request, pk: int):
         my_property = self.get_object(pk)
         serializer = PropertySerializer(my_property, data=request.data)
+        return self.get_validation(serializer)
 
+    def patch(self, request, pk: int):
+        my_property = self.get_object(pk)
+        serializer = PropertySerializer(my_property, data=request.data, partial=True)
         return self.get_validation(serializer)
