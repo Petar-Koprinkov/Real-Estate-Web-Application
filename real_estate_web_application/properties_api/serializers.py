@@ -109,6 +109,7 @@ class PropertySerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         location_data = validated_data.pop('location')
         parking_data = validated_data.pop('parking')
+        parking_data.pop('location')
 
         for key, value in location_data.items():
             setattr(instance.location, key, value)
