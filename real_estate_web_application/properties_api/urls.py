@@ -18,6 +18,9 @@ urlpatterns = [
         path('', views.ParkingAPIView.as_view(), name='parking-list'),
         path('<int:pk>', views.ParkingAPIViewSet.as_view(), name='parking-api'),
     ])),
-    path('real_estate_api/', views.PropertiesAPIView.as_view(), name='real-estate-api'),
+    path('real_estate_api/', include([
+        path('', views.PropertiesAPIView.as_view(), name='real-estate-list'),
+        path('<int:pk>', views.PropertiesAPIViewSet.as_view(), name='real-estate-api'),
+    ])),
 
 ]

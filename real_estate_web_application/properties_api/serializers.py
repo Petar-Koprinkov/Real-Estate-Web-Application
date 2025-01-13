@@ -79,7 +79,7 @@ class ParkingSerializer(serializers.ModelSerializer):
 
 
 class PropertySerializer(serializers.ModelSerializer):
-    owner = UserSerializer()
+    owner = UserSerializer(read_only=True)
     location = LocationSerializer()
     parking = ParkingSerializer()
 
@@ -88,14 +88,9 @@ class PropertySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        owner_data = validated_data.pop('owner')
+
         location_data = validated_data.pop('location')
         parking_data = validated_data.pop('parking')
-
-        owner = UserModel.objects.filter(**owner_data).first()
-
-        if not owner:
-            owner = UserModel.objects.create(**owner_data)
 
         location = Location.objects.filter(**location_data).first()
 
@@ -107,6 +102,30 @@ class PropertySerializer(serializers.ModelSerializer):
         if not parking:
             parking = Parking.objects.create(location=location, **parking_data)
 
-        my_property = Properties.objects.create(owner=owner, location=location, parking=parking, **validated_data)
+        my_property = Properties.objects.create(location=location, parking=parking, **validated_data)
 
         return my_property
+
+    def update(self, instance, validated_data):
+        location_data = validated_data.pop('location')
+        parking_data = validated_data.pop('parking')
+
+        for key, value in location_data.items():
+            setattr(instance.location, key, value)
+
+        for key, value in parking_data.items():
+            setattr(instance.parking, key, value)
+
+        for key, value in validated_data.items():
+            setattr(instance, key, value)
+
+        instance.save()
+
+        return instance
+
+
+
+
+
+
+

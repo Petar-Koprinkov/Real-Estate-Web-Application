@@ -259,6 +259,25 @@ class PropertiesAPIView(APIView):
         serializer = PropertySerializer(properties, many=True)
         return Response(serializer.data)
 
+    def post(self, request, *args, **kwargs):
+        serializer = PropertySerializer(data=request.data)
+
+        if serializer.is_valid():
+            my_property = serializer.save(commit=False)
+            owner = request.user
+            my_property.owner = owner
+            my_property.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+
+
+
 
 
 
