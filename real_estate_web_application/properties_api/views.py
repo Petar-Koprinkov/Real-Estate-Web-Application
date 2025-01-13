@@ -272,17 +272,18 @@ class PropertiesAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+@extend_schema(
+    tags=['Property'],
+    request=PropertySerializer,
+    responses={200: PropertySerializer, 400: PropertySerializer},
+)
+class PropertiesAPIViewSet(APIView):
 
+    @staticmethod
+    def get_object(pk):
+        return get_object_or_404(Properties, pk=pk)
 
-
-
-
-
-
-
-
-
-
-
-
-
+    def get(self, request, pk: int):
+        my_property = self.get_object(pk)
+        serializer = PropertySerializer(my_property)
+        return Response(serializer.data)
