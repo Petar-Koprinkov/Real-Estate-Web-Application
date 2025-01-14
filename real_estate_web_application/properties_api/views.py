@@ -31,6 +31,8 @@ class CustomObtainAuthToken(ObtainAuthToken):
     responses={200: UserSerializer(), 400: UserSerializer()},
 )
 class UserAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
     def get(self, request, *args, **kwargs):
         users = UserModel.objects.all()
         serializer = UserSerializer(users, many=True)
@@ -52,7 +54,8 @@ class UserAPIView(APIView):
     responses={200: UserSerializer(), 400: UserSerializer()},
 )
 class UserListAPIViewSet(APIView):
-
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
     @staticmethod
     def get_object(pk: int):
         return get_object_or_404(UserModel, pk=pk)
@@ -107,6 +110,8 @@ class ProfileAPIView(APIView):
     responses={200: ProfileSerializer, 400: ProfileSerializer},
 )
 class ProfilesListAPIViewSet(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
     @staticmethod
     def get_profile(pk):
         return get_object_or_404(Profile, pk=pk)
