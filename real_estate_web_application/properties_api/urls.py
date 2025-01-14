@@ -1,9 +1,8 @@
 from django.urls import path, include
-from rest_framework.authtoken.views import ObtainAuthToken
 from real_estate_web_application.properties_api import views
 
 urlpatterns = [
-    path('DRF-login', ObtainAuthToken.as_view(), name='DRF-login'),
+    path('DRF-login', views.CustomObtainAuthToken.as_view(), name='DRF-login'),
     path('user_api', include([
         path('', views.UserAPIView.as_view(), name='users-api'),
         path('<int:pk>', views.UserListAPIViewSet.as_view(), name='user-list'),

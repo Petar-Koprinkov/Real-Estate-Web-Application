@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
+from rest_framework.authtoken.serializers import AuthTokenSerializer
 from real_estate_web_application.accounts.models import Profile
 from real_estate_web_application.real_estate.models import Location, Parking, Properties
 

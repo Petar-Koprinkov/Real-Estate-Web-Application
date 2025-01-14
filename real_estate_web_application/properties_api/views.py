@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
+from rest_framework.authtoken.serializers import AuthTokenSerializer
+from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -10,6 +12,14 @@ from real_estate_web_application.properties_api.serializers import LocationSeria
 from real_estate_web_application.real_estate.models import Location, Properties, Parking
 
 UserModel = get_user_model()
+
+@extend_schema(
+    tags=['Login'],
+    request=AuthTokenSerializer(),
+    responses={200: AuthTokenSerializer(), 400: AuthTokenSerializer()},
+)
+class CustomObtainAuthToken(ObtainAuthToken):
+    pass
 
 
 @extend_schema(
