@@ -1,9 +1,11 @@
 from django.contrib.auth import get_user_model
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.generics import get_object_or_404
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from real_estate_web_application.accounts.models import Profile
@@ -12,6 +14,7 @@ from real_estate_web_application.properties_api.serializers import LocationSeria
 from real_estate_web_application.real_estate.models import Location, Properties, Parking
 
 UserModel = get_user_model()
+
 
 @extend_schema(
     tags=['Login'],
@@ -89,6 +92,9 @@ class UserListAPIViewSet(APIView):
     responses={200: ProfileSerializer, 400: ProfileSerializer},
 )
 class ProfileAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
     def get(self, request, *args, **kwargs):
         profile = Profile.objects.all()
         serializer = ProfileSerializer(profile, many=True)
